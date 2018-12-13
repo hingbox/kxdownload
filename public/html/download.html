@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下载视频</title>
+    <!--<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="crossorigin="anonymous"></script>-->
+    <!--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
+    <script src="../js/jquery.js"></script>
+    <!--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <!--<script src="https://cdn.bootcss.com/spin.js/2.3.2/spin.min.js"></script>-->
+    <style>
+        body{
+            color:#999999;
+        }
+        #main{
+            width: window.innerWidth;
+            height: 450px;
+            background-color: #333333;
+        }
+        #title{
+            color: white;
+            padding-left: 25px;
+        }
+        #radio_div{
+            color:white;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+        #cont_list{
+            color: white;
+            padding: 25px;
+        }
+        #route{
+            padding: 25px;
+        }
+        #button_part{
+            color:#FFFFFF;
+            text-align:center;
+            height:50px;
+            line-height:50px;
+        }
+        #cont_list{
+            background-color: #2D2D2D;
+            padding: 20px;
+        }
+        #cancel_btn{
+            border:none;
+            vertical-align:middle;
+            height: 30px;
+            width: 90px;
+            border-radius:4px;
+            font-size: 18px;
+            background-color: #4C4C4C;
+            color: #FFFFFF;
+        }
+        #download_btn{
+            vertical-align:middle;
+            height: 30px;
+            width: 90px;
+            border-radius:4px;
+            margin-right: 50px;
+            font-size:18px;
+            background-color: #4C4C4C;
+            color: #FFFFFF;
+            border:none
+        }
+        #select_nums{
+            display: inline-block;
+            height:5px;
+            line-height:5px;
+            float: right
+        }
+        .box input{
+            height:30px;
+            line-height:30px;
+            border:1px solid #999;
+            vertical-align:middle;
+        }
+    </style>
+    <style>
+        .test-1::-webkit-scrollbar {/*滚动条整体样式*/
+            width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
+            height: 1px;
+        }
+        .test-1::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+            background: #4E4E4E;
+            /*background: #535353;*/
+        }
+        .test-1::-webkit-scrollbar-track {/*滚动条里面轨道*/
+            -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            background: #000000;
+            /*background: #EDEDED;*/
+        }
+
+    </style>
+    <script>
+//        $.ajaxPrefilter( function (options) {
+//            if (options.crossDomain && jQuery.support.cors) {
+//                var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
+//                options.url = http + '//cors-anywhere.herokuapp.com/' + options.url;
+//                options.crossDomain = false;
+//            }
+//        });
+        $.ajaxPrefilter( function (options) {
+            if (options.crossDomain && jQuery.support.cors) {
+                var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
+                options.url = http + '//cors-anywhere.herokuapp.com/' + options.url;
+                options.crossDomain = false;
+            }
+        });
+
+    </script>
+
+    <script>
+        //=================获取码率start==========
+        var rateType = 1;//默认
+        var uc = 54;//默认
+        //获取码率
+       function getRate(){
+           var rateTypeTemp = $("input[type='radio']:checked").val();
+           rateType = rateTypeTemp;
+           if (rateType ==1){
+               uc = 54;
+           } else if (rateType ==2) {
+               uc = 55;
+           }else if (rateType ==3) {
+               uc = 91;
+           }else if (rateType ==4) {
+               uc = 92;
+           }
+           console.log("分辨率->"+rateType)
+       }
+        window.onload = getRate;
+        //=================获取码率end==========
+
+        //=================获取节目列表start=====
+        //根据节目id获取节目列表
+        var cid = "648855469";//测试的电影节目id=649371244;续集节目id=648855469
+        var contentDetailUrl ="http://www.miguvideo.com/wap/resource/miguPC_client/data/detailData.jsp?cid="+cid;
+        //var url ="http://183.192.162.54/wap/resource/miguPC_client/data/detailData.jsp?cid="+cid;
+        $.ajax({
+            type: "get",
+            url: contentDetailUrl,
+            contentType: "application/json;charset=utf-8",
+            dataType:"json",
+            success: function (data) {
+                //completeLoading();
+                //console.log("data"+JSON.stringify(data));
+                for (var i = 0; i < data.length; i++) {
+                    //console.log("mId"+data[i].SubSerial_IDS);
+                    var SubSerial_IDS = data[i].SubSerial_IDS;
+                    if (SubSerial_IDS !=='') {
+                        //表示是续集类节目
+                        var variety = data[i].Variety;
+                        var html='';
+                        var cid='';
+                        for (var j=0;i<variety.length;j++){
+                            cid = variety[j].contId;
+                            newName = variety[j].newName;
+                            imgH = variety[j].imgH;
+                            html+='<input type="checkbox" name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input type="hidden" value="'+imgH+'"/><br/>';
+                            $('#box').html(html);
+                            //console.log("contId"+contId+"newName:"+newName)
+                        }
+                    }else{
+                        var html = '';
+                        //表示是电影类节目
+                        cid =data[i].contId;
+                        newName =data[i].name;
+                        imgH = data[i].imgH;
+                        console.log("imgH"+imgH);
+                        html+='<input type="checkbox" name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input type="hidden" value="'+imgH+'"/><br/>';
+                        $('#box').html(html);
+                        console.log("contId"+cid+"newName:"+newName)
+                    }
+                }
+            },error:function(error){
+                console.log("请求失败"+JSON.stringify(error));
+            }
+        });
+
+        //=================获取节目列表end==========
+
+        //==============全选按钮 start ==========
+        // 全选
+        function allcheck(){
+            document.getElementById('check_all').style.color = "#007AFF";
+            document.getElementById('check_reverse').style.color = "#FFFFFF";
+            $('input[type="checkbox"]').prop('checked','true');
+            var check_list = ($("input[type='checkbox']:checked").length);
+            $("#select_nums").html("共选择"+check_list+"个文件");
+        }
+        //=======全选按钮 end==========
+
+        //=======反选按钮 start==========
+        //反选
+        function reversecheck(){
+            document.getElementById('check_reverse').style.color = "#007AFF";
+            document.getElementById('check_all').style.color = "#FFFFFF";
+            $('input[type="checkbox"]').each(function () {
+                $(this).prop("checked", !$(this).prop("checked"));
+                //获取选择的数量
+                var check_list = ($("input[type='checkbox']:checked").length);
+                $("#select_nums").html("共选择"+check_list+"个文件");
+            });
+        }
+        //=======反选按钮 start==========
+
+        //=======单选chekbox start==========
+        //点击checkbox
+        function checkboxOnclick(checkbox){
+            document.getElementById('check_reverse').style.color = "#FFFFFF";
+            document.getElementById('check_all').style.color = "#FFFFFF";
+            if ( checkbox.checked == true){
+                var check_list = ($("input[type='checkbox']:checked").length);
+            }else{
+                var check_list = ($("input[type='checkbox']:checked").length);
+            }
+            $("#select_nums").html("共选择"+check_list+"个文件");
+        }
+        //=======单选chekbox end==========
+
+
+        //=============点击下载按钮  start=============
+        function download(){
+            //判断是否选择了 下载的节目
+            var check_list = ($("input[type='checkbox']:checked").length);
+            if(check_list<=0){
+                alert("请选择下载节目!");
+                return false;
+            }
+            document.getElementById("download_btn").style.background="#007AFF";
+            document.getElementById("cancel_btn").style.background="#4C4C4C";
+            var obj = document.getElementsByName("content");
+            var check_val = [];
+            for(k in obj){
+                if(obj[k].checked)
+                    check_val.push(obj[k].value);
+            }
+            var check_vals = check_val.join(",");
+           console.log("用户选择节目id->"+check_vals);
+
+
+            //进行鉴权 鉴权通过 跳转到下载页面
+            var cid = check_vals;//测试的电影节目id=649371244;续集节目id=648855469
+            //var uc = "54";//54(标清)、55(高清)、9(720P)、92(1080P)
+            var userId = "970100008";
+            var userToken = "7191E06E94B71F975565";
+            var SDKCEId = "79acd784-cbbb-4cae-8778-8723e001164b";
+//            var X-UP-CLIENT-CHANNEL-ID = "101700040000001";
+            var downNewUrl ="http://183.192.162.101:8084/playurl/v1/down/downurl?h265=false&contIds=639539699&dolby=false&mt=10&nt=4&uc=54&vr=false";
+            var downUrl = "http://183.192.162.101:8084/playurl/v1/down/downurl?h265=false&contIds="+cid+"&dolby=false&mt=10&nt=4&uc=54&vr=false&rateType=4";
+            //var url ="http://183.192.162.101:8084/playurl/v1/down/downurl?h265=false&contIds="+cid+"&dolby=false&mt=10&nt=4&uc="+uc+"&vr=false";
+            $.ajax({
+                type: "get",
+                url: downNewUrl,
+                contentType: "application/json;charset=utf-8",
+                dataType:"json",
+                beforeSend: function (XMLHttpRequest) {
+                    XMLHttpRequest.setRequestHeader("userId", userId);
+                    XMLHttpRequest.setRequestHeader("token", userToken);
+                    XMLHttpRequest.setRequestHeader("SDKCEId", SDKCEId);
+                    XMLHttpRequest.setRequestHeader("X-UP-CLIENT-CHANNEL-ID", "101700040000001");
+
+                },
+                success: function (data) {
+                    console.log("data"+JSON.stringify(data));
+                    if ("200" == data.code) {
+                        var body =data.body;
+                        for (var i =0;body.length;i++){
+                            if ("200" == body[i].code){
+                                //获取下载地址url
+                                console.log("url"+body[i].url)
+                            }else if ("403" == body[i].code){
+                                //表示拥护没有权限下载，提示用户需要收费
+                                console.log("没有权限下载")
+                            } else if("401" == body[i].code){
+                                console.log("版权原因无法下载")
+                            }
+                        }
+
+                    }
+                },error:function(error){
+                    console.log("请求失败"+JSON.stringify(error));
+                }
+            });
+        }
+        //=============点击下载按钮  end=============
+
+        //========点击 更改下载目录  start=====
+        function updateDownloadDir(){
+            //TODO 打开电脑系统文件夹
+        }
+        //========点击 更改下载目录  start=====
+
+        //========点击 取消按钮  start=====
+        function cancelBtn(){
+            document.getElementById("download_btn").style.background="#4C4C4C";
+            document.getElementById("cancel_btn").style.background="#007AFF";
+            //TODO 关闭窗口
+        }
+        //========点击 取消按钮  end=====
+    </script>
+
+    <script>
+        //======数据加蒙层区域 start=========
+        //在页面未加载完毕之前显示的loading Html自定义内容
+        var _LoadingHtml = '<div id="loadingDiv" style="display: none; "><div id="over" style=" position: absolute;top: 0;left: 0; width: 100%;height: 100%; background-color: #f5f5f5;opacity:0.5;z-index: 1000;"></div><div id="layout" style="position: absolute;top: 20%; left: 20%;width: 20%; height: 20%;  z-index: 1001;text-align:center;"><img src="" /></div></div>';
+        //呈现loading效果
+        document.write(_LoadingHtml);
+
+        //移除loading效果
+        function completeLoading() {
+            document.getElementById("loadingDiv").style.display="none";
+        }
+        //展示loading效果
+        function showLoading()
+        {
+            document.getElementById("loadingDiv").style.display="block";
+        }
+
+        //======数据加蒙层区域 结束=========
+
+
+
+
+    </script>
+    <script>
+        $('#open').change(function(){
+            alert($(this).val());
+        });
+    </script>
+    <script>
+        $("input[name=open]").change(function() {
+            alert($("input[name=open]").val())
+        })
+    </script>
+</head>
+<!-- onload="showLoading()" -->
+<body>
+<div id="main">
+    <div id="title">新建下载任务</div>
+    <hr/>
+    <!-- 码率部分 start-->
+    <div id="radio_div">
+        全部下载为：
+        <input name="rateType" onchange="getRate(this)" type="radio" value='1' checked /><label>标清</label>
+        <input name="rateType" onchange="getRate(this)" type="radio" value="2"/><label>高清</label>
+        <input name="rateType" onchange="getRate(this)" type="radio" value="3"/><label>720P</label>
+        <input name="rateType" onchange="getRate(this)" type="radio" value="4"/><label>1080P<img src="../images/mark_vip.png"/></label>
+    </div>
+    <!-- 码率部分 end-->
+
+    <!-- 节目列表部分 start-->
+    <div id="cont_list">
+        <div style="background: #2D2D2D">选择下载文件</div>
+        <div id="box" style="height: 100px;overflow:auto;border: 1px solid #252525;" class="test-1">
+        </div>
+        <div style="background:#181818;border-radius: 3px;">
+            <p id="check_all" style="display: inline-block;height:5px;line-height:5px" onclick="allcheck()">全选</p>
+            <p id="check_reverse" style="display: inline-block;height:5px;line-height:5px" onclick="reversecheck()">反选</p>
+            <p id="select_nums"></p>
+        </div>
+    </div>
+    <!-- 节目列表部分 end-->
+
+    <!-- 文件保存路径 start-->
+    <!--<div id="route">-->
+        <!--<div style="height: 20px;line-height: 20px;vertical-align:middle">-->
+            <!--<span style="color: #999999">保存为：</span>-->
+            <!--<input style="width: 200px;;background: #252525;border-width: 0;height: 21px" type="text" name="path" id="path" value="D:\migu" disabled="disabled" />-->
+            <!--<span style="background:#252525;line-height: 20px;vertical-align:middle;margin-left: -5px;">100G</span>-->
+            <!--<span onclick="updateDownloadDir() "style="color: #007AFF;line-height: 20px;vertical-align:middle;float: right">更改下载目录</span>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div id="route">
+        <div style="display: inline-block" >
+            <div style="float: left;margin-top: 3px;">保存为：</div>
+            <div style="float: left" class="box">
+                <input style="width: 300px;background: #252525;border-width: 0;" type="text" name="path" id="path" value="D:\migu" disabled="disabled" >
+                <span style="margin-right: 5px;">100G</span>
+            </div>
+            <div style="float: left;margin-left: 10px;margin-top: 3px;"><span onclick="updateDownloadDir()" style="color: #007AFF;">更改下载目录</span></div>
+        </div>
+    </div>
+
+    <!-- 文件保存路径 end-->
+
+    <!-- 下载，取消按钮 部分 start-->
+    <div id="button_part">
+            <button id="download_btn" onclick="download()">下载</button>
+            <button id="cancel_btn" onclick="cancelBtn()">取消</button>
+    </div>
+    <!-- 下载，取消按钮 部分 end-->
+</div>
+</body>
+</html>

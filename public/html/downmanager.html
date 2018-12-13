@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/styles.css" media="screen" type="text/css" />
+  <link rel="stylesheet" href="../css/bootstrap.css" media="screen" type="text/css" />
+  <script src="../js/jquery.js"></script>
+  <link href="../css/qikoo.css" rel="stylesheet" type="text/css"/>
+  <script src="../js/qikoo.js"></script>
+  <style>
+    .tabBlock-pane li{
+      list-style-type: none;
+    }
+  </style>
+  <style>
+    a:hover,a:active{
+      color: red;
+    }
+    .tabBlock-content {
+        background-color: #333333;
+        border: 0px ;
+      }
+    .progress{
+      height: 8px;
+      background: #262626;
+      padding: 1px;
+      overflow: visible;
+      border-radius: 20px;
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #7992a8;
+      margin: 1px;
+    }
+    .progress .progress-bar{
+      border-radius: 20px;
+      position: relative;
+      animation: animate-positive 2s;
+    }
+    .progress .progress-value{
+      display: block;
+      padding: 3px 7px;
+      font-size: 13px;
+      color: #fff;
+      border-radius: 4px;
+      background: #191919;
+      border: 1px solid #000;
+      position: absolute;
+      top: -40px;
+      right: -10px;
+    }
+    .progress .progress-value:after{
+      content: "";
+      border-top: 10px solid #191919;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      position: absolute;
+      bottom: -6px;
+      left: 26%;
+    }
+    .progress-bar.active{
+      animation: reverse progress-bar-stripes 0.40s linear infinite, animate-positive 2s;
+    }
+    @-webkit-keyframes animate-positive{
+      0% { width: 0; }
+    }
+    @keyframes animate-positive{
+      0% { width: 0; }
+    }
+  </style>
+  <style>
+    .div-center{
+      float: left;
+    }
+  </style>
+
+  <!--<style type="text/css">-->
+    <!--input[type="checkbox"] {-->
+      <!--width: 12px;-->
+      <!--height: 12px;-->
+      <!--display: inline-block;-->
+      <!--text-align: center;-->
+      <!--vertical-align: middle;-->
+      <!--line-height: 12px;-->
+      <!--position: relative;-->
+    <!--}-->
+
+    <!--input[type="checkbox"]::before {-->
+      <!--content: "";-->
+      <!--position: absolute;-->
+      <!--top: 0;-->
+      <!--left: 0;-->
+      <!--background: #fff;-->
+      <!--width: 100%;-->
+      <!--height: 100%;-->
+      <!--border: 1px solid #CACDCF-->
+    <!--}-->
+
+    <!--input[type="checkbox"]:checked::before {-->
+      <!--content: "\2713";-->
+      <!--background-color: #2196F3;-->
+      <!--color: #fff;-->
+      <!--position: absolute;-->
+      <!--top: 0;-->
+      <!--left: 0;-->
+      <!--width: 100%;-->
+      <!--border: 1px solid #2196F3;-->
+      <!--font-size: 12px;-->
+      <!--font-weight: bold;-->
+    <!--}-->
+  <!--</style>-->
+</head>
+<body >
+  <figure class="tabBlock">
+  <ul class="tabBlock-tabs">
+    <li class="tabBlock-tab is-active">下载中(1)</li>
+    <li class="tabBlock-tab">已下载(0)</li>
+  </ul>
+  <div class="tabBlock-content" style="width: auto;">
+    <div class="tabBlock-pane">
+      <ul>
+        <div style="overflow-y: auto;height: 250px;">
+          <li>
+            <div>
+              <div style="float: left"><input  class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg"></div>
+              <div style="float: left;width: 400px;">
+                <p style="display: inline-block;color: #CCCCCC">节目名称1</p>
+                <div style="display: inline-block;float: right;margin-right: 20px;"><img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;<span id="single_pause_span" style="color: #CCCCCC">下载</span></div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 10%;">
+                  </div>
+                </div>
+                <div style="color:#CCCCCC;"><span type="hidden" id="pause_span"></span><span id="file_size_before">1000M/</span><span id="file_size_after">5000M</span></div>
+              </div>
+              <div style="float: left;margin-top: 20px;margin-left: 8px;"><span style="margin-top3:3px;color: #CCCCCC;">10%</span><img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              <div style="float: left"><input  class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg"></div>
+              <div style="float: left;width: 400px;">
+                <p style="display: inline-block;color: #CCCCCC">节目名称2</p>
+                <!--<div style="display: inline-block;float: right"><img id="single_download_img" onclick="singleDownload();" style="width: 20px;height: 20px;vertical-align: center" src="../img/ic_l_download_d.png"><span id="single_download_span"style="color: #CCCCCC">下载</span></div>-->
+                <div style="display: inline-block;float: right;margin-right: 20px;"><img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;<span class="single_pause_span" style="color: #CCCCCC">下载</span></div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 10%;">
+                    <!--<div class="progress-value">50%</div>-->
+                  </div>
+                </div>
+                <div style="color:#CCCCCC;"><span type="hidden" class="pause_span"></span><span class="file_size_before">1000M/</span><span class="file_size_after">5000M</span></div>
+              </div>
+              <div style="float: left;margin-top: 20px;margin-left: 8px;"><span style="margin-top3:3px;color: #CCCCCC;">10%</span><img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/></div>
+            </div>
+          </li>
+        </div>
+        <div style="background-color: #181818">
+          <div>
+            <label style="color:red;"><input style="margin-left: 13px;margin-top:11px;" type="checkbox" id="all" onclick="chk()"></label>
+            <img id="bottom_start" onclick="bottom_start()" src="../images/ic_start_d.png"><span id="bottom_start_span">开始</span>
+            <!--<img id="bottom_pause" onclick="bottom_pause()" src="../img/ic_pause_d.png"><span id="bottom_start_pause">暂停</span>-->
+            <img id="bottom_delete" onclick="bottom_delete()" src="../images/ic_delete_d.png"/><span id="bottom_start_delete">删除</span>
+          </div>
+        </div>
+      </ul>
+    </div>
+    <div class="tabBlock-pane">
+      <ul>
+        <div style="overflow-y: auto;">
+          <li>
+            <div>
+              <div style="float: left"><input  class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg"></div>
+              <div style="float: left;width: 400px;">
+                <p style="display: inline-block;color: #CCCCCC">节目名称1</p>
+                <div><span style="color: #CCCCCC">节目描述</span></div>
+              </div>
+              <div style="float: left;margin-top: 20px;margin-left: 10px;"><img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/></div>
+            </div>
+          </li> <li>
+          <div>
+            <div style="float: left"><input  disabled=disabled class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg"></div>
+            <div style="float: left;width: 400px;">
+              <p style="display: inline-block;color: #CCCCCC">节目名称1</p>
+              <div><span style="color: #CCCCCC">节目描述</span></div>
+            </div>
+            <div style="float: left;margin-top: 20px;margin-left: 10px;"><img class="callConfirm" src="../img/ic_delete.png" style="width: 22px;height: 22px;"/></div>
+          </div>
+        </li>
+        </div>
+      </ul>
+    </div>
+
+    <!-- 底部 所有任务下载关机按钮，文件存储按钮，设置按钮 start-->
+    <div style="width: auto;height: 50px;margin-top: 5px;">
+      <div style="float: left"><img id="image" onclick="changeImage()" src="../images/ic_sw_off.png"/><span style="color: #007AFF;">所有任务下载后自动关机</span></div>
+      <div style="float: right"><img onclick="fileStorage()" src="../images/ic_store.png"/><img onclick="settings()" src="../images/ic_setting.png"/></div>
+    </div>
+    <!-- 底部 所有任务下载关机按钮，文件存储按钮，设置按钮 end-->
+  </div>
+
+</figure>
+<script>
+  //鼠标停留 文字变色(单个节目 暂停  下载)
+  $("#single_pause_span").mouseover(function(){
+    $(this).css({
+//      "border-color":"yellow",
+      "color": "#007AFF"
+    });
+  }).mouseout(function(){
+    $(this).css({
+//      "border-color":"",
+      "color": "#CCCCCC "
+    });
+  });
+  //点击单个节目暂停(停止下载)
+  function singlePause(obj){
+    obj = $(this);
+    var imgurl = obj.find('.single_pause_img').attr('src');
+//    var imgurl=obj.find('img').attr('src');
+    alert(imgurl)
+    var thisObj=$(obj);//js对象转jquery对象
+    console.log(thisObj);
+    //按钮替换
+    var element = $(this).find('.single_pause_img');
+    console.log(thisObj.find('img').attr('scr'));
+    if ($(this).attr('src')=="ic_l_pause_d") {
+      element.src="../images/ic_l_download_d.png";
+      $(".single_pause_span").text("下载");
+      $(".pause_span").hide();
+      $(".file_size_before").show();
+      $(".file_size_after").show();
+      //TODO 开始下载
+    }
+    else {
+      element.src="../images/ic_l_pause_d.png";
+      $(".single_pause_span").text("暂停");
+      $(".pause_span").show();
+      $(".pause_span").text("暂停");
+      $(".file_size_before").hide();
+      $(".file_size_after").hide();
+
+      //TODO 暂停下载
+    }
+  }
+
+//    //点击单个节目暂停(停止下载)
+//    function singlePause(obj){
+//      var thisObj=$(obj);//js对象转jquery对象
+//      console.log(thisObj);
+//      //按钮替换
+//      var element = $(this).find('.single_pause_img');
+//      console.log(thisObj.find('img').attr('scr'));
+//      if ($(this).attr('src')=="ic_l_pause_d") {
+//        element.src="../images/ic_l_download_d.png";
+//        $(".single_pause_span").text("下载");
+//        $(".pause_span").hide();
+//        $(".file_size_before").show();
+//        $(".file_size_after").show();
+//        //TODO 开始下载
+//      }
+//      else {
+//        element.src="../images/ic_l_pause_d.png";
+//        $(".single_pause_span").text("暂停");
+//        $(".pause_span").show();
+//        $(".pause_span").text("暂停");
+//        $(".file_size_before").hide();
+//        $(".file_size_after").hide();
+//
+//        //TODO 暂停下载
+//      }
+//    }
+
+    //点击删除
+    $(".callConfirm").click(function(){
+      qikoo.dialog.confirm('你确定要删除下载任务吗?\t删除将无法恢复。',function(){
+       //TODO
+      },function(){
+      });
+    });
+
+  //点击底部全选开始按钮(暂停按钮)
+  function bottom_start(){
+    //点击开始，校验checkbox是否为空
+    var check_list = ($("input[type='checkbox']:checked").length);
+    if (check_list<=0) {
+      alert("您还没有选择节目，请选择节目");
+      return false
+    }
+
+    var element = document.getElementById('bottom_start');
+    if (element.src.match("ic_start_d")) {//取消下载
+      element.src="../images/ic_pause_d.png";
+//      document.getElementById("bottom_start_span").style.color="#FFFFFF";
+      $("#bottom_start_span").text("暂停");
+    } else {//点击下载
+      element.src="../images/ic_start_d.png";
+//      document.getElementById("bottom_start_span").style.color="#007AFF";
+      $("#bottom_start_span").text("开始");
+
+      var obj = document.getElementsByName("mychk");
+      var check_val = [];
+      for(k in obj){
+        if(obj[k].checked)
+          check_val.push(obj[k].value);
+      }
+      var check_vals = check_val.join(",")
+      console.log("chebox选择的节目进行开始下载->"+check_vals);
+      //TODO 根据上面的节目id进行开始下载
+
+
+    }
+  }
+
+</script>
+  <script>
+    function chk(){
+      var all = document.getElementById("all");
+      var mychk = document.getElementsByName("mychk");
+      //alert("mychk长度=="+mychk.length);
+      if(all.checked==true){
+        //alert("all.checked==true全选");
+        if(mychk.length){
+          for(var i=0;i<mychk.length;i++){
+            mychk[i].checked = true;
+          }
+
+        }
+        mychk.chcked=true;
+      }else{
+        //alert("all.checked==false全不选");
+        if(mychk.length){
+          for(var i=0;i<mychk.length;i++){
+            mychk[i].checked = false;
+          }
+        }
+      }
+    }
+
+    //点击checkbox
+    function checkboxOnclick(checkbox){
+      if ( checkbox.checked == true){
+        var check_list = ($("input[type='checkbox']:checked").length);
+//        document.getElementsByName("mychk").style.css("background","url(../img/ic_more_a.png) left center no-repeat");
+      }else{
+        var check_list = ($("input[type='checkbox']:checked").length);
+//        document.getElementsByName("mychk").style.css("background","url(../img/ic_more_n.png) left center no-repeat");
+      }
+      //alert(check_list)
+      //$("#select_nums").html("共选择"+check_list+"个文件");
+    }
+
+    $(document).ready(function(){
+      var flag = 1;
+      $(".mychk").click(function(){
+        if(flag == 1){
+          $(".mychk").css("background","url(../images/ic_more_a.png) left center no-repeat");
+          flag = 0;
+        } else{
+          $(".mychk").css("background","url(../images/ic_more_n.png) left center no-repeat");
+          flag = 1;
+        }
+      })
+    });
+
+    //点击 底部 左下角 按钮【所有任务下载后自动关机】
+    function changeImage(){
+      //判断 用户是否选择节目，如果没有选择节目提示用户选择节目
+      var check_list = ($("input[type='checkbox']:checked").length);
+      if (check_list<=0) {
+        alert("您还没有选择节目，请选择节目");
+        return false
+      }
+      var element=document.getElementById('image');
+      if (element.src.match("ic_sw_on")) {
+        element.src="../images/ic_sw_off.png";
+        //TODO 需要调用系统的关机命令，用户下载完所有的视频，制动关机
+      }
+      else {
+        element.src="../images/ic_sw_on.png";
+        //TODO 需要调用解除系统关机命令，如果用户点击了上面开关，然后关掉，此处要解除关机
+      }
+    }
+
+    //点击 底部 右下角 文件存储 按钮
+    function fileStorage(){
+      //TODO
+    }
+    //点击 底部 右下角 设置按钮
+    function settings(){
+      //TODO
+    }
+</script>
+<script src='../js/jquery.js'></script>
+<script src="../js/downmanger.js"></script>
+</body>
+</html>
