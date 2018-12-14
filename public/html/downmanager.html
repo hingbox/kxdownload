@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
-  <link rel="stylesheet" href="../css/normalize.css">
+  <!--<link rel="stylesheet" href="../css/normalize.css">-->
   <link rel="stylesheet" href="../css/styles.css" media="screen" type="text/css" />
   <link rel="stylesheet" href="../css/bootstrap.css" media="screen" type="text/css" />
   <script src="../js/jquery.js"></script>
@@ -118,38 +118,67 @@
   </ul>
   <div class="tabBlock-content" style="width: auto;">
     <div class="tabBlock-pane">
-      <ul>
+      <ul id="list">
         <div style="overflow-y: auto;height: 250px;">
           <li>
             <div>
-              <div style="float: left"><input  class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg"></div>
+              <div style="float: left">
+                <input class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg">
+              </div>
               <div style="float: left;width: 400px;">
                 <p style="display: inline-block;color: #CCCCCC">节目名称1</p>
-                <div style="display: inline-block;float: right;margin-right: 20px;"><img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;<span id="single_pause_span" style="color: #CCCCCC">下载</span></div>
+                <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
+                  <img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;
+                  <span class="pause_down_span" style="color: #CCCCCC">下载</span>
+                </div>
+
                 <div class="progress">
                   <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 10%;">
                   </div>
                 </div>
-                <div style="color:#CCCCCC;"><span type="hidden" id="pause_span"></span><span id="file_size_before">1000M/</span><span id="file_size_after">5000M</span></div>
+
+                <div style="color:#CCCCCC;" class="mark">
+                  <span  class="pause_span"></span>
+                    <span class="file_size_before">1000M/</span>
+                    <span class="file_size_after">5000M</span>
+                </div>
               </div>
-              <div style="float: left;margin-top: 20px;margin-left: 8px;"><span style="margin-top3:3px;color: #CCCCCC;">10%</span><img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/></div>
+
+              <div style="float: left;margin-top: 20px;margin-left: 8px;">
+                <span style="margin-top3:3px;color: #CCCCCC;">10%</span>
+                <img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>
+              </div>
             </div>
           </li>
+
           <li>
             <div>
-              <div style="float: left"><input  class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg"></div>
+              <div style="float: left">
+                <input class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg">
+              </div>
               <div style="float: left;width: 400px;">
-                <p style="display: inline-block;color: #CCCCCC">节目名称2</p>
-                <!--<div style="display: inline-block;float: right"><img id="single_download_img" onclick="singleDownload();" style="width: 20px;height: 20px;vertical-align: center" src="../img/ic_l_download_d.png"><span id="single_download_span"style="color: #CCCCCC">下载</span></div>-->
-                <div style="display: inline-block;float: right;margin-right: 20px;"><img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;<span class="single_pause_span" style="color: #CCCCCC">下载</span></div>
+                <p style="display: inline-block;color: #CCCCCC">节目名称1</p>
+                <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
+                  <img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;
+                  <span class="pause_down_span" style="color: #CCCCCC">下载</span>
+                </div>
+
                 <div class="progress">
                   <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 10%;">
-                    <!--<div class="progress-value">50%</div>-->
                   </div>
                 </div>
-                <div style="color:#CCCCCC;"><span type="hidden" class="pause_span"></span><span class="file_size_before">1000M/</span><span class="file_size_after">5000M</span></div>
+
+                <div style="color:#CCCCCC;" class="mark">
+                  <span class="pause_span"></span>
+                  <span class="file_size_before">1000M/</span>
+                  <span class="file_size_after">5000M</span>
+                </div>
               </div>
-              <div style="float: left;margin-top: 20px;margin-left: 8px;"><span style="margin-top3:3px;color: #CCCCCC;">10%</span><img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/></div>
+
+              <div style="float: left;margin-top: 20px;margin-left: 8px;">
+                <span style="margin-top3:3px;color: #CCCCCC;">10%</span>
+                <img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>
+              </div>
             </div>
           </li>
         </div>
@@ -165,33 +194,70 @@
     </div>
     <div class="tabBlock-pane">
       <ul>
-        <div style="overflow-y: auto;">
-          <li>
+        <div style="overflow-y: auto;height: 250px;">
+          <li style="line-height:20px;">
             <div>
-              <div style="float: left"><input  class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg"></div>
+              <div style="float: left">
+                <input class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg">
+              </div>
               <div style="float: left;width: 400px;">
                 <p style="display: inline-block;color: #CCCCCC">节目名称1</p>
-                <div><span style="color: #CCCCCC">节目描述</span></div>
+                <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
+                  <img class="single_pause_img" onclick="finishPlay(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;
+                  <span class="pause_down_span" style="color: #CCCCCC">播放</span>
+                </div>
+
+                <div class="progress" style="display: none">
+                  <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 10%;">
+                  </div>
+                </div>
+
+                <div style="color:#CCCCCC;">
+                  <span  class="pause_span">节目描述</span>
+                </div>
               </div>
-              <div style="float: left;margin-top: 20px;margin-left: 10px;"><img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/></div>
+
+              <div style="float: left;margin-top: 20px;margin-left: 8px;">
+                <img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>
+              </div>
             </div>
-          </li> <li>
-          <div>
-            <div style="float: left"><input  disabled=disabled class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg"></div>
-            <div style="float: left;width: 400px;">
-              <p style="display: inline-block;color: #CCCCCC">节目名称1</p>
-              <div><span style="color: #CCCCCC">节目描述</span></div>
+          </li>
+
+          <li style="line-height:20px;">
+            <div>
+              <div style="float: left">
+                <input class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg">
+              </div>
+              <div style="float: left;width: 400px;">
+                <p style="display: inline-block;color: #CCCCCC">这是节目名称</p>
+                <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
+                  <img class="single_pause_img" onclick="finishPlay(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;
+                  <span class="pause_down_span" style="color: #CCCCCC">播放</span>
+                </div>
+
+                <div class="progress" style="display: none">
+                  <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 10%;">
+                  </div>
+                </div>
+
+                <div style="color:#CCCCCC;">
+                  <span  class="pause_span">这是节目描述</span>
+                </div>
+              </div>
+
+              <div style="float: left;margin-top: 20px;margin-left: 8px;">
+                <img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>
+              </div>
             </div>
-            <div style="float: left;margin-top: 20px;margin-left: 10px;"><img class="callConfirm" src="../img/ic_delete.png" style="width: 22px;height: 22px;"/></div>
-          </div>
-        </li>
+          </li>
+
         </div>
       </ul>
     </div>
 
     <!-- 底部 所有任务下载关机按钮，文件存储按钮，设置按钮 start-->
     <div style="width: auto;height: 50px;margin-top: 5px;">
-      <div style="float: left"><img id="image" onclick="changeImage()" src="../images/ic_sw_off.png"/><span style="color: #007AFF;">所有任务下载后自动关机</span></div>
+      <!--<div style="float: left"><img id="image" onclick="changeImage()" src="../images/ic_sw_off.png"/><span style="color: #007AFF;">所有任务下载后自动关机</span></div>-->
       <div style="float: right"><img onclick="fileStorage()" src="../images/ic_store.png"/><img onclick="settings()" src="../images/ic_setting.png"/></div>
     </div>
     <!-- 底部 所有任务下载关机按钮，文件存储按钮，设置按钮 end-->
@@ -200,7 +266,7 @@
 </figure>
 <script>
   //鼠标停留 文字变色(单个节目 暂停  下载)
-  $("#single_pause_span").mouseover(function(){
+  $(".single_pause_span").mouseover(function(){
     $(this).css({
 //      "border-color":"yellow",
       "color": "#007AFF"
@@ -211,64 +277,26 @@
       "color": "#CCCCCC "
     });
   });
-  //点击单个节目暂停(停止下载)
-  function singlePause(obj){
-    obj = $(this);
-    var imgurl = obj.find('.single_pause_img').attr('src');
-//    var imgurl=obj.find('img').attr('src');
-    alert(imgurl)
-    var thisObj=$(obj);//js对象转jquery对象
-    console.log(thisObj);
-    //按钮替换
-    var element = $(this).find('.single_pause_img');
-    console.log(thisObj.find('img').attr('scr'));
-    if ($(this).attr('src')=="ic_l_pause_d") {
-      element.src="../images/ic_l_download_d.png";
-      $(".single_pause_span").text("下载");
-      $(".pause_span").hide();
-      $(".file_size_before").show();
-      $(".file_size_after").show();
-      //TODO 开始下载
-    }
-    else {
-      element.src="../images/ic_l_pause_d.png";
-      $(".single_pause_span").text("暂停");
-      $(".pause_span").show();
-      $(".pause_span").text("暂停");
-      $(".file_size_before").hide();
-      $(".file_size_after").hide();
 
-      //TODO 暂停下载
+  //点击单个节目暂停(停止下载)
+  function singlePause(that){
+    if($(that).attr('src').match("ic_l_download_d") ){
+      $(that).attr('src','../images/ic_l_pause_d.png');
+//      $(that).parent('.div_parent').siblings('.mark').find('.texts').slideUp(0).siblings('.pause_span').slideDown(0);
+      $(that).parent('.div_parent').siblings('.mark').find('.pause_span').text("暂停");
+      $(that).parent('.div_parent').siblings('.mark').find('.file_size_before').hide();
+      $(that).parent('.div_parent').siblings('.mark').find('.file_size_after').hide();
+      $(that).siblings('.pause_down_span').text("暂停")
+
+    } else {
+      $(that).attr('src','../images/ic_l_download_d.png');
+//      $(that).parent('.div_parent').siblings('.mark').find('.texts').slideDown(0).siblings('.pause_span').slideUp(0);
+      $(that).parent('.div_parent').siblings('.mark').find('.pause_span').text("");
+      $(that).parent('.div_parent').siblings('.mark').find('.file_size_before').show();
+      $(that).parent('.div_parent').siblings('.mark').find('.file_size_after').show();
+      $(that).siblings('.pause_down_span').text("下载")
     }
   }
-
-//    //点击单个节目暂停(停止下载)
-//    function singlePause(obj){
-//      var thisObj=$(obj);//js对象转jquery对象
-//      console.log(thisObj);
-//      //按钮替换
-//      var element = $(this).find('.single_pause_img');
-//      console.log(thisObj.find('img').attr('scr'));
-//      if ($(this).attr('src')=="ic_l_pause_d") {
-//        element.src="../images/ic_l_download_d.png";
-//        $(".single_pause_span").text("下载");
-//        $(".pause_span").hide();
-//        $(".file_size_before").show();
-//        $(".file_size_after").show();
-//        //TODO 开始下载
-//      }
-//      else {
-//        element.src="../images/ic_l_pause_d.png";
-//        $(".single_pause_span").text("暂停");
-//        $(".pause_span").show();
-//        $(".pause_span").text("暂停");
-//        $(".file_size_before").hide();
-//        $(".file_size_after").hide();
-//
-//        //TODO 暂停下载
-//      }
-//    }
-
     //点击删除
     $(".callConfirm").click(function(){
       qikoo.dialog.confirm('你确定要删除下载任务吗?\t删除将无法恢复。',function(){
@@ -305,8 +333,6 @@
       var check_vals = check_val.join(",")
       console.log("chebox选择的节目进行开始下载->"+check_vals);
       //TODO 根据上面的节目id进行开始下载
-
-
     }
   }
 
@@ -379,7 +405,6 @@
         //TODO 需要调用解除系统关机命令，如果用户点击了上面开关，然后关掉，此处要解除关机
       }
     }
-
     //点击 底部 右下角 文件存储 按钮
     function fileStorage(){
       //TODO
@@ -388,7 +413,14 @@
     function settings(){
       //TODO
     }
+
+    //已下载中 点击 播放
+    function finishPlay(){
+      console.log("点击播放，需要调用播放器进行播放");
+      //TODO 调用本地播放器进行播放
+    }
 </script>
+<script></script>
 <script src='../js/jquery.js'></script>
 <script src="../js/downmanger.js"></script>
 </body>

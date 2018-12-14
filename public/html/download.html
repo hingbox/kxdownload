@@ -104,13 +104,13 @@
 //                options.crossDomain = false;
 //            }
 //        });
-        $.ajaxPrefilter( function (options) {
-            if (options.crossDomain && jQuery.support.cors) {
-                var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
-                options.url = http + '//cors-anywhere.herokuapp.com/' + options.url;
-                options.crossDomain = false;
-            }
-        });
+//        $.ajaxPrefilter( function (options) {
+//            if (options.crossDomain && jQuery.support.cors) {
+//                var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
+//                options.url = http + '//cors-anywhere.herokuapp.com/' + options.url;
+//                options.crossDomain = false;
+//            }
+//        });
 
     </script>
 
@@ -139,13 +139,16 @@
         //=================获取节目列表start=====
         //根据节目id获取节目列表
         var cid = "648855469";//测试的电影节目id=649371244;续集节目id=648855469
-        var contentDetailUrl ="http://www.miguvideo.com/wap/resource/miguPC_client/data/detailData.jsp?cid="+cid;
+//        var contentDetailUrl ="http://www.miguvideo.com/wap/resource/miguPC_client/data/detailData.jsp?cid="+cid;
+        var contentDetailUrl ="http://172.16.75.217:8081/contInfo";
+        var params ={"cid":cid};
         //var url ="http://183.192.162.54/wap/resource/miguPC_client/data/detailData.jsp?cid="+cid;
         $.ajax({
-            type: "get",
+            type: "post",
             url: contentDetailUrl,
             contentType: "application/json;charset=utf-8",
             dataType:"json",
+            data:JSON.stringify(params),
             success: function (data) {
                 //completeLoading();
                 //console.log("data"+JSON.stringify(data));
@@ -245,27 +248,35 @@
 
 
             //进行鉴权 鉴权通过 跳转到下载页面
-            var cid = check_vals;//测试的电影节目id=649371244;续集节目id=648855469
+            var cid = check_vals;//测试的电影节目id=649039736;续集节目id=649039777
             //var uc = "54";//54(标清)、55(高清)、9(720P)、92(1080P)
-            var userId = "970100008";
-            var userToken = "7191E06E94B71F975565";
+            var userId = "901785618";
+            var userToken = "E7DCCC527ABB7D5DB2FD";
             var SDKCEId = "79acd784-cbbb-4cae-8778-8723e001164b";
 //            var X-UP-CLIENT-CHANNEL-ID = "101700040000001";
-            var downNewUrl ="http://183.192.162.101:8084/playurl/v1/down/downurl?h265=false&contIds=639539699&dolby=false&mt=10&nt=4&uc=54&vr=false";
+            var downNewUrl ="http://172.16.75.217:8081/url";
+//            var downNewUrl ="http://183.192.162.101:8084/playurl/v1/down/downurl?h265=false&contIds=639539699&dolby=false&mt=10&nt=4&uc=54&vr=false";
             var downUrl = "http://183.192.162.101:8084/playurl/v1/down/downurl?h265=false&contIds="+cid+"&dolby=false&mt=10&nt=4&uc=54&vr=false&rateType=4";
             //var url ="http://183.192.162.101:8084/playurl/v1/down/downurl?h265=false&contIds="+cid+"&dolby=false&mt=10&nt=4&uc="+uc+"&vr=false";
+            var paramsUrl={
+                "uc":uc,
+                "cid":cid,
+                "userId":userId,
+                "userToken":userToken
+            };
             $.ajax({
-                type: "get",
+                type: "post",
                 url: downNewUrl,
                 contentType: "application/json;charset=utf-8",
                 dataType:"json",
-                beforeSend: function (XMLHttpRequest) {
-                    XMLHttpRequest.setRequestHeader("userId", userId);
-                    XMLHttpRequest.setRequestHeader("token", userToken);
-                    XMLHttpRequest.setRequestHeader("SDKCEId", SDKCEId);
-                    XMLHttpRequest.setRequestHeader("X-UP-CLIENT-CHANNEL-ID", "101700040000001");
-
-                },
+                data:JSON.stringify(paramsUrl),
+//                beforeSend: function (XMLHttpRequest) {
+//                    XMLHttpRequest.setRequestHeader("userId", userId);
+//                    XMLHttpRequest.setRequestHeader("token", userToken);
+//                    XMLHttpRequest.setRequestHeader("SDKCEId", SDKCEId);
+//                    XMLHttpRequest.setRequestHeader("X-UP-CLIENT-CHANNEL-ID", "101700040000001");
+//
+//                },
                 success: function (data) {
                     console.log("data"+JSON.stringify(data));
                     if ("200" == data.code) {
@@ -273,7 +284,10 @@
                         for (var i =0;body.length;i++){
                             if ("200" == body[i].code){
                                 //获取下载地址url
-                                console.log("url"+body[i].url)
+                                console.log("url->"+body[i].url)
+                                //跳转到下载管理页面
+                                // 以下方式直接跳转
+                                window.location.href='/html/downmanager.html';
                             }else if ("403" == body[i].code){
                                 //表示拥护没有权限下载，提示用户需要收费
                                 console.log("没有权限下载")
@@ -359,7 +373,7 @@
         <div style="background: #2D2D2D">选择下载文件</div>
         <div id="box" style="height: 100px;overflow:auto;border: 1px solid #252525;" class="test-1">
         </div>
-        <div style="background:#181818;border-radius: 3px;">
+        <div style="background:#181818;border-radius: 3px;margin-top: 1px;">
             <p id="check_all" style="display: inline-block;height:5px;line-height:5px" onclick="allcheck()">全选</p>
             <p id="check_reverse" style="display: inline-block;height:5px;line-height:5px" onclick="reversecheck()">反选</p>
             <p id="select_nums"></p>
