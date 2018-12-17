@@ -164,10 +164,13 @@
                         var html='';
                         var cid='';
                         for (var j=0;i<variety.length;j++){
-                            cid = variety[j].contId;
-                            newName = variety[j].newName;
-                            imgH = variety[j].imgH;
-                            html+='<input type="checkbox" name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input type="hidden" value="'+imgH+'"/><br/>';
+                            cid = variety[j].contId;//节目id
+                            newName = variety[j].newName;//节目名称
+                            imgH = variety[j].imgH;//节目海报图
+                            detail = data[i].Detail;//节目详情
+                            timeLong = variety[j].CDuration;//节目时长
+
+                            html+='<input class="inputs" type="checkbox" mydata={"cid":"'+cid+'","newName":"'+newName+'","imgH":"'+imgH+'","detail":"'+detail+'","timeLong":"'+timeLong+'","uc":"'+uc+'"} name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input name="img" type="hidden" value="'+imgH+'"/><br/>';
                             $('#box').html(html);
                             //console.log("contId"+contId+"newName:"+newName)
                         }
@@ -176,9 +179,11 @@
                         //表示是电影类节目
                         cid =data[i].contId;
                         newName =data[i].name;
-                        imgH = data[i].imgH;
-                        console.log("imgH"+imgH);
-                        html+='<input type="checkbox" name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input type="hidden" value="'+imgH+'"/><br/>';
+                        imgH = data[i].imgH;//节目海报图
+                        detail = data[i].Detail;//节目详情
+                        timeLong = data[i].timeLong;//节目时长
+                       /* html+='<input type="checkbox" name="content" onclick="checkboxOnclick(this)" value="'+cid+'" /><span>'+newName+'</span><input type="hidden" value="'+imgH+'"/><br/>';*/
+                        html+='<input class="inputs" type="checkbox" mydata={"cid":"'+cid+'","newName":"'+newName+'","imgH":"'+imgH+'","detail":"'+detail+'","timeLong":"'+timeLong+'","uc":"'+uc+'"} name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input name="img" type="hidden" value="'+imgH+'"/><br/>';
                         $('#box').html(html);
                         console.log("contId"+cid+"newName:"+newName)
                     }
@@ -225,6 +230,7 @@
                 var check_list = ($("input[type='checkbox']:checked").length);
             }
             $("#select_nums").html("共选择"+check_list+"个文件");
+
         }
         //=======单选chekbox end==========
 
@@ -241,12 +247,30 @@
             document.getElementById("cancel_btn").style.background="#4C4C4C";
             var obj = document.getElementsByName("content");
             var check_val = [];
+            var check_content = [];
+            var check_data = new Array();
             for(k in obj){
                 if(obj[k].checked)
                     check_val.push(obj[k].value);
+                if(obj[k].checked){
+                    check_content.push(obj[k].nextSibling.nodeValue)
+                }
+                if(obj[k].checked){
+                    check_data.push(obj[k].getAttribute("mydata"));
+                }
             }
+//            var arr=[],val;
+//            $('.inputs:checked').each(function(index,element){
+//                val=JSON.parse($(element).attr('mydata'))
+//                arr.push(val);
+//                console.log("hah"+arr);
+//            });
             var check_vals = check_val.join(",");
-           console.log("用户选择节目id->"+check_vals);
+            var check_contents = check_content.join(",");
+            var check_datas =(JSON.stringify(check_data));
+            console.log("用户选择节目id->"+check_vals);
+            console.log("用户选择节目名称->"+check_contents);
+            console.log("用户选择的数据->"+(check_datas));
 
             //进行鉴权 鉴权通过 跳转到下载页面
             var cid = check_vals;//测试的电影节目id=649039736;续集节目id=649039777
@@ -284,11 +308,15 @@
                                 //获取下载地址url
                                 console.log("url->"+body[i].url);
                                 //TODO 获取到播放，说明鉴权通过了，可以下载了，需要将 用户选择的节目名称，图片，节目详情，文件大小，传到下载管理页面
-                                //文件大小
-                                //文件码率
-                                //文件地址
+                                //需要传到下载管理页面的字段->节目名称,节目封面图，文件码率,节目id,文件大小，下载地址
                                 //跳转到下载管理页面
                                 // 以下方式直接跳转
+                                for (i=0;i<check_vals.length;i++){
+                                    console.log("cid=>"+check_val[i]);
+                                }
+//                                $.cookie('cc' , '' ,{expires: -1});
+                                //$.cookie("cc",check_datas);
+                                localStorage.setItem('cc', check_datas);
                                 window.location.href='/html/downmanager.html';
                             }else if ("403" == body[i].code){
                                 //TODO 表示拥护没有权限下载，提示用户需要收费
@@ -340,9 +368,6 @@
         }
 
         //======数据加蒙层区域 结束=========
-
-
-
 
     </script>
     <script>
@@ -415,12 +440,28 @@
 </div>
 <script>
     $(function(){
-        var data = {
-            id:"1",
-            name:"dingding",
-            age:20
-        }
+        var data = [{
+            "cid":"649371244",
+            "name":"张艺谋和他的“影”",
+            "imgH":"http://wapx.cmvideo.cn:8080/publish/poms/image/5500/601/419/201811160001_p2534552707_HSJ720H.jpg",
+            "Detail":"记录《影》诞生的全过程，展现张艺谋导演及电影主创如何把创意、文字变成一幅完整的水墨丹青的美学画卷。选取幕后电影人作为记录对象，包括演员、美术、摄影、道具、服装、剪辑等各个工种的工作人员，讲述他们为电影中每一帧拍摄做出的细致考量。影片揭示邓超一人分饰两角的秘密，邓超孙俪夫妇互怼互黑的日常，聚光灯外不问收获但问耕耘的幕后英雄，让观众了解中国电影工业的全貌，体验电影人非凡匠心的感动瞬间。",
+            "mediaSize":"1191078363",
+            "usageCode":"54",
+            "timeLong":"110"
+        },{
+            "cid":"649371244",
+            "name":"张艺谋和他的“影”",
+            "imgH":"http://wapx.cmvideo.cn:8080/publish/poms/image/5500/601/419/201811160001_p2534552707_HSJ720H.jpg",
+            "Detail":"记录《影》诞生的全过程，展现张艺谋导演及电影主创如何把创意、文字变成一幅完整的水墨丹青的美学画卷。选取幕后电影人作为记录对象，包括演员、美术、摄影、道具、服装、剪辑等各个工种的工作人员，讲述他们为电影中每一帧拍摄做出的细致考量。影片揭示邓超一人分饰两角的秘密，邓超孙俪夫妇互怼互黑的日常，聚光灯外不问收获但问耕耘的幕后英雄，让观众了解中国电影工业的全貌，体验电影人非凡匠心的感动瞬间。",
+            "mediaSize":"1191078363",
+            "usageCode":"54",
+            "timeLong":"110"
+        }];
         $.cookie('data',JSON.stringify(data));
+    });
+
+    $(function(){
+
     });
 </script>
 </body>
