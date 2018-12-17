@@ -7,8 +7,10 @@
   <link rel="stylesheet" href="../css/styles.css" media="screen" type="text/css" />
   <link rel="stylesheet" href="../css/bootstrap.css" media="screen" type="text/css" />
   <script src="../js/jquery.js"></script>
+  <script src="../js/jquery.cookie.js"></script>
   <link href="../css/qikoo.css" rel="stylesheet" type="text/css"/>
   <script src="../js/qikoo.js"></script>
+
   <style>
     .tabBlock-pane li{
       list-style-type: none;
@@ -420,8 +422,14 @@
       //TODO 调用本地播放器进行播放
     }
 </script>
-<script></script>
-<script src='../js/jquery.js'></script>
+<script>
+  $(function(){
+    var data = $.cookie('data');
+    var m = JSON.parse(data);
+    console.log("m="+ m.id+"name"+ m.name);
+  });
+</script>
+<!--<script src='../js/jquery.js'></script>-->
 <script src="../js/downmanger.js"></script>
 </body>
 </html>

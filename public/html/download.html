@@ -5,7 +5,9 @@
     <title>下载视频</title>
     <!--<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="crossorigin="anonymous"></script>-->
     <!--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
+
     <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
     <!--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
     <!--<script src="https://cdn.bootcss.com/spin.js/2.3.2/spin.min.js"></script>-->
     <style>
@@ -96,6 +98,7 @@
         }
 
     </style>
+
     <script>
 //        $.ajaxPrefilter( function (options) {
 //            if (options.crossDomain && jQuery.support.cors) {
@@ -140,7 +143,7 @@
         //根据节目id获取节目列表
         var cid = "648855469";//测试的电影节目id=649371244;续集节目id=648855469
 //        var contentDetailUrl ="http://www.miguvideo.com/wap/resource/miguPC_client/data/detailData.jsp?cid="+cid;
-        var contentDetailUrl ="http://172.16.75.217:8081/contInfo";
+        var contentDetailUrl ="http://47.104.220.221:8081/api/getContentInfo";
         var params ={"cid":cid};
         //var url ="http://183.192.162.54/wap/resource/miguPC_client/data/detailData.jsp?cid="+cid;
         $.ajax({
@@ -184,7 +187,6 @@
                 console.log("请求失败"+JSON.stringify(error));
             }
         });
-
         //=================获取节目列表end==========
 
         //==============全选按钮 start ==========
@@ -246,30 +248,26 @@
             var check_vals = check_val.join(",");
            console.log("用户选择节目id->"+check_vals);
 
-
             //进行鉴权 鉴权通过 跳转到下载页面
             var cid = check_vals;//测试的电影节目id=649039736;续集节目id=649039777
             //var uc = "54";//54(标清)、55(高清)、9(720P)、92(1080P)
             var userId = "901785618";
             var userToken = "E7DCCC527ABB7D5DB2FD";
-            var SDKCEId = "79acd784-cbbb-4cae-8778-8723e001164b";
-//            var X-UP-CLIENT-CHANNEL-ID = "101700040000001";
-            var downNewUrl ="http://172.16.75.217:8081/url";
-//            var downNewUrl ="http://183.192.162.101:8084/playurl/v1/down/downurl?h265=false&contIds=639539699&dolby=false&mt=10&nt=4&uc=54&vr=false";
-            var downUrl = "http://183.192.162.101:8084/playurl/v1/down/downurl?h265=false&contIds="+cid+"&dolby=false&mt=10&nt=4&uc=54&vr=false&rateType=4";
-            //var url ="http://183.192.162.101:8084/playurl/v1/down/downurl?h265=false&contIds="+cid+"&dolby=false&mt=10&nt=4&uc="+uc+"&vr=false";
-            var paramsUrl={
+            var downNewUrl ="http://47.104.220.221:8081/api/getDownUrl";
+            var visitUrl = "http://183.192.162.101:8084";//这个是请求调用获取播放地址，这个地方是预览地址，后面直接传生产地址即可
+            var getUrlParams={
                 "uc":uc,
                 "cid":cid,
                 "userId":userId,
-                "userToken":userToken
+                "userToken":userToken,
+                "visitUrl":visitUrl
             };
             $.ajax({
                 type: "post",
                 url: downNewUrl,
                 contentType: "application/json;charset=utf-8",
                 dataType:"json",
-                data:JSON.stringify(paramsUrl),
+                data:JSON.stringify(getUrlParams),
 //                beforeSend: function (XMLHttpRequest) {
 //                    XMLHttpRequest.setRequestHeader("userId", userId);
 //                    XMLHttpRequest.setRequestHeader("token", userToken);
@@ -284,15 +282,20 @@
                         for (var i =0;body.length;i++){
                             if ("200" == body[i].code){
                                 //获取下载地址url
-                                console.log("url->"+body[i].url)
+                                console.log("url->"+body[i].url);
+                                //TODO 获取到播放，说明鉴权通过了，可以下载了，需要将 用户选择的节目名称，图片，节目详情，文件大小，传到下载管理页面
+                                //文件大小
+                                //文件码率
+                                //文件地址
                                 //跳转到下载管理页面
                                 // 以下方式直接跳转
                                 window.location.href='/html/downmanager.html';
                             }else if ("403" == body[i].code){
-                                //表示拥护没有权限下载，提示用户需要收费
+                                //TODO 表示拥护没有权限下载，提示用户需要收费
                                 console.log("没有权限下载")
                             } else if("401" == body[i].code){
                                 console.log("版权原因无法下载")
+                                //TODO
                             }
                         }
 
@@ -410,5 +413,15 @@
     </div>
     <!-- 下载，取消按钮 部分 end-->
 </div>
+<script>
+    $(function(){
+        var data = {
+            id:"1",
+            name:"dingding",
+            age:20
+        }
+        $.cookie('data',JSON.stringify(data));
+    });
+</script>
 </body>
 </html>
