@@ -119,79 +119,85 @@
 
     <script>
         //=================获取码率start==========
-        var rateType = 1;//默认
-        var uc = 54;//默认
-        //获取码率
-       function getRate(){
-           var rateTypeTemp = $("input[type='radio']:checked").val();
-           rateType = rateTypeTemp;
-           if (rateType ==1){
-               uc = 54;
-           } else if (rateType ==2) {
-               uc = 55;
-           }else if (rateType ==3) {
-               uc = 91;
-           }else if (rateType ==4) {
-               uc = 92;
-           }
-           console.log("分辨率->"+rateType)
-       }
-        window.onload = getRate;
+//        var rateType = 1;//默认
+//        var uc;//默认;
+//        var rateTypeTemp = $("input[type='radio']:checked").val();
+//        if (typeof(rateTypeTemp) == "undefined") {
+//                uc=54;
+//            getContentList(uc)
+//        }
+//        function getRate(that){
+//            rateType = $(that).val();
+//            if (rateType == 1){
+//                uc = 54;
+//            } else if (rateType == 2) {
+//                uc = 55;
+//            }else if (rateType == 3) {
+//                uc = 91;
+//            }else if (rateType == 4) {
+//                uc = 92;
+//            }
+//            getContentList(uc);
+//        }
+
         //=================获取码率end==========
 
         //=================获取节目列表start=====
-        //根据节目id获取节目列表
-        var cid = "648855469";//测试的电影节目id=649371244;续集节目id=648855469
+        function getContentList(){
+            //根据节目id获取节目列表
+            var cid = "648855469";//测试的电影节目id=649371244;续集节目id=648855469
 //        var contentDetailUrl ="http://www.miguvideo.com/wap/resource/miguPC_client/data/detailData.jsp?cid="+cid;
-        var contentDetailUrl ="http://47.104.220.221:8081/api/getContentInfo";
-        var params ={"cid":cid};
-        //var url ="http://183.192.162.54/wap/resource/miguPC_client/data/detailData.jsp?cid="+cid;
-        $.ajax({
-            type: "post",
-            url: contentDetailUrl,
-            contentType: "application/json;charset=utf-8",
-            dataType:"json",
-            data:JSON.stringify(params),
-            success: function (data) {
-                //completeLoading();
-                //console.log("data"+JSON.stringify(data));
-                for (var i = 0; i < data.length; i++) {
-                    //console.log("mId"+data[i].SubSerial_IDS);
-                    var SubSerial_IDS = data[i].SubSerial_IDS;
-                    if (SubSerial_IDS !=='') {
-                        //表示是续集类节目
-                        var variety = data[i].Variety;
-                        var html='';
-                        var cid='';
-                        for (var j=0;i<variety.length;j++){
-                            cid = variety[j].contId;//节目id
-                            newName = variety[j].newName;//节目名称
-                            imgH = variety[j].imgH;//节目海报图
-                            detail = data[i].Detail;//节目详情
-                            timeLong = variety[j].CDuration;//节目时长
+            var contentDetailUrl ="http://47.104.220.221:8081/api/getContentInfo";
+            var params ={"cid":cid};
+            //var url ="http://183.192.162.54/wap/resource/miguPC_client/data/detailData.jsp?cid="+cid;
+            $.ajax({
+                type: "post",
+                url: contentDetailUrl,
+                contentType: "application/json;charset=utf-8",
+                dataType:"json",
+                data:JSON.stringify(params),
+                success: function (data) {
+                    //completeLoading();
+                    //console.log("data"+JSON.stringify(data));
+                    for (var i = 0; i < data.length; i++) {
+                        //console.log("mId"+data[i].SubSerial_IDS);
+                        var SubSerial_IDS = data[i].SubSerial_IDS;
+                        if (SubSerial_IDS !=='') {
+                            //表示是续集类节目
+                            var variety = data[i].Variety;
+                            var html='';
+                            var cid='';
+                            for (j in variety){
+                                cid = variety[j].contId;//节目id
+                                newName = variety[j].newName;//节目名称
+                                imgH = variety[j].imgH;//节目海报图
+                                detail = data[i].Detail;//节目详情
+                                timeLong = variety[j].CDuration;//节目时长
 
-                            html+='<input class="inputs" type="checkbox" mydata={"cid":"'+cid+'","newName":"'+newName+'","imgH":"'+imgH+'","detail":"'+detail+'","timeLong":"'+timeLong+'","uc":"'+uc+'"} name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input name="img" type="hidden" value="'+imgH+'"/><br/>';
+                                html+='<input class="inputs" type="checkbox" mydata={"cid":"'+cid+'","newName":"'+newName+'","imgH":"'+imgH+'","detail":"'+detail+'","timeLong":"'+timeLong+'","uc":"'+uc+'","mediaSize":"","url":""} name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input name="img" type="hidden" value="'+imgH+'"/><br/>';
+                                $('#box').html(html);
+                                //console.log("contId"+contId+"newName:"+newName)
+                            }
+                        }else{
+                            var html = '';
+                            //表示是电影类节目
+                            cid =data[i].contId;
+                            newName =data[i].name;
+                            imgH = data[i].imgH;//节目海报图
+                            detail = data[i].Detail;//节目详情
+                            timeLong = data[i].timeLong;//节目时长
+                            /* html+='<input type="checkbox" name="content" onclick="checkboxOnclick(this)" value="'+cid+'" /><span>'+newName+'</span><input type="hidden" value="'+imgH+'"/><br/>';*/
+                            html+='<input class="inputs" type="checkbox" mydata={"cid":"'+cid+'","newName":"'+newName+'","imgH":"'+imgH+'","detail":"'+detail+'","timeLong":"'+timeLong+'","uc":"'+uc+'","mediaSize":"","url":""} name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input name="img" type="hidden" value="'+imgH+'"/><br/>';
                             $('#box').html(html);
-                            //console.log("contId"+contId+"newName:"+newName)
+                            console.log("contId"+cid+"newName:"+newName)
                         }
-                    }else{
-                        var html = '';
-                        //表示是电影类节目
-                        cid =data[i].contId;
-                        newName =data[i].name;
-                        imgH = data[i].imgH;//节目海报图
-                        detail = data[i].Detail;//节目详情
-                        timeLong = data[i].timeLong;//节目时长
-                       /* html+='<input type="checkbox" name="content" onclick="checkboxOnclick(this)" value="'+cid+'" /><span>'+newName+'</span><input type="hidden" value="'+imgH+'"/><br/>';*/
-                        html+='<input class="inputs" type="checkbox" mydata={"cid":"'+cid+'","newName":"'+newName+'","imgH":"'+imgH+'","detail":"'+detail+'","timeLong":"'+timeLong+'","uc":"'+uc+'"} name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input name="img" type="hidden" value="'+imgH+'"/><br/>';
-                        $('#box').html(html);
-                        console.log("contId"+cid+"newName:"+newName)
                     }
+                },error:function(error){
+                    console.log("请求失败"+JSON.stringify(error));
                 }
-            },error:function(error){
-                console.log("请求失败"+JSON.stringify(error));
-            }
-        });
+            });
+        }
+
         //=================获取节目列表end==========
 
         //==============全选按钮 start ==========
@@ -239,7 +245,7 @@
         function download(){
             //判断是否选择了 下载的节目
             var check_list = ($("input[type='checkbox']:checked").length);
-            if(check_list<=0){
+            if(check_list <= 0){
                 alert("请选择下载节目!");
                 return false;
             }
@@ -274,6 +280,7 @@
 
             //进行鉴权 鉴权通过 跳转到下载页面
             var cid = check_vals;//测试的电影节目id=649039736;续集节目id=649039777
+            var download_data=[];//存储 获取下载地址的数据
             //var uc = "54";//54(标清)、55(高清)、9(720P)、92(1080P)
             var userId = "901785618";
             var userToken = "E7DCCC527ABB7D5DB2FD";
@@ -303,30 +310,43 @@
                     console.log("data"+JSON.stringify(data));
                     if ("200" == data.code) {
                         var body =data.body;
-                        for (var i =0;body.length;i++){
-                            if ("200" == body[i].code){
+                        for (var c in body){
+                            if ("200" == body[c].code){
+                                //解析文件大小，流地址
+                                download_data.push(body[c]);
                                 //获取下载地址url
-                                console.log("url->"+body[i].url);
+                                console.log("url->"+body[c].url);
                                 //TODO 获取到播放，说明鉴权通过了，可以下载了，需要将 用户选择的节目名称，图片，节目详情，文件大小，传到下载管理页面
                                 //需要传到下载管理页面的字段->节目名称,节目封面图，文件码率,节目id,文件大小，下载地址
                                 //跳转到下载管理页面
                                 // 以下方式直接跳转
-                                for (i=0;i<check_vals.length;i++){
-                                    console.log("cid=>"+check_val[i]);
-                                }
+//                                for (i=0;i<check_vals.length;i++){
+//                                    console.log("cid=>"+check_val[i]);
+//                                }
 //                                $.cookie('cc' , '' ,{expires: -1});
                                 //$.cookie("cc",check_datas);
-                                localStorage.setItem('cc', check_datas);
+
                                 window.location.href='/html/downmanager.html';
-                            }else if ("403" == body[i].code){
+                            }else if ("403" == body[c].code){
                                 //TODO 表示拥护没有权限下载，提示用户需要收费
                                 console.log("没有权限下载")
-                            } else if("401" == body[i].code){
-                                console.log("版权原因无法下载")
-                                //TODO
+                            } else if("401" == body[c].code){
+                                console.log("版权原因无法下载");
+                                //TODO 这个一般是非大陆的ip，才会提示
+                            }else if("404" == body[c].code){
+                                console.log("未找到媒体文件");
+                                //TODO 传的节目id有问题，传的是续集壳的节目id，不是续集集数的节目id
                             }
-                        }
 
+                        }
+                        //存储用户选择的数据(分辨率，节目id,节目名称，节目图片，节目时长，节目描述)
+                        localStorage.setItem('selectData', check_datas);
+                        //存储用户获取到的播放数据(文件大小，文件下载地址)
+                        localStorage.setItem('downloadData', JSON.stringify(download_data));
+                        console.log("==================downloadData"+JSON.stringify(download_data));
+
+                    }else {
+                        console.log("请求失败");
                     }
                 },error:function(error){
                     console.log("请求失败"+JSON.stringify(error));
@@ -389,7 +409,7 @@
     <!-- 码率部分 start-->
     <div id="radio_div">
         全部下载为：
-        <input name="rateType" onchange="getRate(this)" type="radio" value='1' checked /><label>标清</label>
+        <input name="rateType" onchange="getRate(this)" type="radio" value="1" checked /><label>标清</label>
         <input name="rateType" onchange="getRate(this)" type="radio" value="2"/><label>高清</label>
         <input name="rateType" onchange="getRate(this)" type="radio" value="3"/><label>720P</label>
         <input name="rateType" onchange="getRate(this)" type="radio" value="4"/><label>1080P<img src="../images/mark_vip.png"/></label>
@@ -460,9 +480,27 @@
         $.cookie('data',JSON.stringify(data));
     });
 
-    $(function(){
-
-    });
+</script>
+<script>
+    var rateType = $("input[type='radio']:checked").val();
+    var uc;
+    if (rateType ==1 || typeof (rateType) == "undefined") {
+        uc=54
+    }
+    function getRate(that){
+        var rateTypeTemp = $(that).val()
+        if (rateTypeTemp ==1) {
+            uc=54
+        }else if (rateTypeTemp == 2){
+            uc=55
+        }else if (rateTypeTemp == 2){
+            uc=91
+        }else{
+            uc=92
+        }
+        getContentList()
+    }
+    getContentList()
 </script>
 </body>
 </html>

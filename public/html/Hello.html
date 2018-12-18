@@ -87,5 +87,33 @@
         }
     }
 </script>
+<div id="radio_div">
+    全部下载为：
+    <input name="rateType" onchange="getRate(this)" type="radio" value="1" checked /><label>标清</label>
+    <input name="rateType" onchange="getRate(this)" type="radio" value="2"/><label>高清</label>
+    <input name="rateType" onchange="getRate(this)" type="radio" value="3"/><label>720P</label>
+    <input name="rateType" onchange="getRate(this)" type="radio" value="4"/><label>1080P<img src="../images/mark_vip.png"/></label>
+</div>
+<script>
+    var rateType = $("input[type='radio']:checked").val();
+    var uc;
+    if (rateType ==1) {
+        uc=54
+    }
+    function getRate(that){
+        var rateTypeTemp = $(that).val()
+        if (rateTypeTemp ==1) {
+            uc=54
+        }else if (rateTypeTemp == 2){
+            uc=55
+        }else if (rateTypeTemp == 2){
+            uc=91
+        }else{
+            uc=92
+        }
+        //console.log(uc)
+    }
+    console.log("uc->"+uc)
+</script>
 </body>
 </html>
