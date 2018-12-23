@@ -4,6 +4,58 @@
     <meta charset="UTF-8">
     <title>Helloword</title>
     <script src="../js/jquery.js"></script>
+    <style>
+        .choose {
+            position: relative;
+        }
+
+        .choose .radio {
+            position: relative;
+            display: inline-block;
+            font-weight: 400;
+            color: #999999;
+            padding-left: 25px;
+            cursor: pointer;
+        }
+
+        .choose .radio input {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .choose .radio i {
+            display: block;
+            position: absolute;
+            top: 6px;
+            left: 0;
+            width: 15px;
+            height: 15px;
+            outline: 0;
+            border: 1px solid #e4e4e4;
+            background: #ffffff;
+            border-radius: 50%;
+            transition: border-color .3s;
+            -webkit-transition: border-color .3s;
+        }
+
+        .choose .radio input + i:after {
+            position: absolute;
+            content: '';
+            top: 3px;
+            left: 3px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background-color: #007AFF;
+            opacity: 0;
+            transition: opacity .1s;
+            -webkit-transition: opacity .1s;
+        }
+
+        .choose .radio input:checked + i:after {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body onload="test()">
 <script>
@@ -88,12 +140,20 @@
     }
 </script>
 <div id="radio_div">
-    全部下载为：
-    <input name="rateType" onchange="getRate(this)" type="radio" value="1" checked /><label>标清</label>
-    <input name="rateType" onchange="getRate(this)" type="radio" value="2"/><label>高清</label>
-    <input name="rateType" onchange="getRate(this)" type="radio" value="3"/><label>720P</label>
-    <input name="rateType" onchange="getRate(this)" type="radio" value="4"/><label>1080P<img src="../images/mark_vip.png"/></label>
+    <div class="choose">
+        全部下载为：
+        <label class="radio"><span class="uc-text">标清</span><input type="radio" name="rateType" onchange="getRate(this)" value="1" checked><i></i></label>
+        <label class="radio"><span class="uc-text">高清</span><input type="radio" value="2" onchange="getRate(this)" name="rateType"><i></i></label>
+        <label class="radio"><span class="uc-text">超清</span><input type="radio" value="3" onchange="getRate(this)" name="rateType"><i></i></label>
+        <label class="radio"><span class="uc-text">标清</span><input type="radio" value="4" onchange="getRate(this)" name="rateType"><i></i><img src="../images/mark_vip.png"/></label>
+    </div>
+    <!--<input name="rateType" onchange="getRate(this)" type="radio" value="1" checked /><label>标清</label>-->
+    <!--<input name="rateType" onchange="getRate(this)" type="radio" value="2"/><label>高清</label>-->
+    <!--<input name="rateType" onchange="getRate(this)" type="radio" value="3"/><label>720P</label>-->
+    <!--<input name="rateType" onchange="getRate(this)" type="radio" value="4"/><label>1080P<img src="../images/mark_vip.png"/></label>-->
 </div>
+
+
 <script>
     var rateType = $("input[type='radio']:checked").val();
     var uc;
@@ -101,9 +161,10 @@
         uc=54
     }
     function getRate(that){
-        var rateTypeTemp = $(that).val()
+        $(that).siblings('.uc-text').css('color',"#007AFF");
+        var rateTypeTemp = $(that).val();
         if (rateTypeTemp ==1) {
-            uc=54
+            uc=54;
         }else if (rateTypeTemp == 2){
             uc=55
         }else if (rateTypeTemp == 2){
@@ -111,6 +172,9 @@
         }else{
             uc=92
         }
+
+
+        console.log("uc"+uc);
         //console.log(uc)
     }
     console.log("uc->"+uc)

@@ -20,13 +20,16 @@
             font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
             font-size:14px;
         }
+        i{
+            margin-top: -3px;;
+        }
         #main{
             width: 650px;
             height: 500px;
             background-color: #333333;
         }
         #title{
-            color: white;
+            color: #999999;
             padding-left: 25px;
             font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
             font-size: 20px;
@@ -43,9 +46,10 @@
             border: 1px solid #252525;
             font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
             font-size: 16px;
+            color:#999999;
         }
         #radio_div{
-            color:white;
+            color:#999999;
             padding-left: 25px;
             padding-right: 25px;
             font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
@@ -86,6 +90,7 @@
         }
         .select-font{
             background: #2D2D2D;
+            color: #999999;
             height: 30px;
             font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
             font-size: 16px;
@@ -137,6 +142,59 @@
             /*background: #EDEDED;*/
         }
 
+    </style>
+    <style>
+        /* 单选按钮的样式*/
+        .choose {
+            position: relative;
+        }
+
+        .choose .radio {
+            position: relative;
+            display: inline-block;
+            font-weight: 400;
+            color: #999999;
+            padding-left: 25px;
+            cursor: pointer;
+        }
+
+        .choose .radio input {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .choose .radio i {
+            display: block;
+            position: absolute;
+            top: 6px;
+            left: 0;
+            width: 15px;
+            height: 15px;
+            outline: 0;
+            border: 1px solid #e4e4e4;
+            background: #ffffff;
+            border-radius: 50%;
+            transition: border-color .3s;
+            -webkit-transition: border-color .3s;
+        }
+
+        .choose .radio input + i:after {
+            position: absolute;
+            content: '';
+            top: 3px;
+            left: 3px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background-color: #007AFF;
+            opacity: 0;
+            transition: opacity .1s;
+            -webkit-transition: opacity .1s;
+        }
+
+        .choose .radio input:checked + i:after {
+            opacity: 1;
+        }
     </style>
 
     <script>
@@ -477,11 +535,18 @@
     <hr/>
     <!-- 码率部分 start-->
     <div id="radio_div">
-        全部下载为：
+        <!--全部下载为：
         <input name="rateType" onchange="getRate(this)" type="radio" value="1" checked /><label>标清</label>
         <input name="rateType" onchange="getRate(this)" type="radio" value="2"/><label>高清</label>
         <input name="rateType" onchange="getRate(this)" type="radio" value="3"/><label>720P</label>
-        <input name="rateType" onchange="getRate(this)" type="radio" value="4"/><label>1080P<img src="../images/mark_vip.png"/></label>
+        <input name="rateType" onchange="getRate(this)" type="radio" value="4"/><label>1080P<img src="../images/mark_vip.png"/></label>-->
+        <div class="choose">
+            全部下载为：
+            <label class="radio"><input type="radio" name="rateType" onchange="getRate(this)" value="1" checked><i></i>标清</label>
+            <label class="radio"><input type="radio" name="rateType" onchange="getRate(this)" value="2"><i></i>高清</label>
+            <label class="radio"><input type="radio" name="rateType" onchange="getRate(this)" value="3"><i></i>720P</label>
+            <label class="radio"><input type="radio" name="rateType" onchange="getRate(this)" value="4"><i></i>1080P<img src="../images/mark_vip.png"/></label>
+        </div>
     </div>
     <!-- 码率部分 end-->
 
@@ -526,9 +591,11 @@
         uc=54
     }
     function getRate(that){
-        var rateTypeTemp = $(that).val()
+        var rateTypeTemp = $(that).val();
+        $(that).parent('.radio').siblings('.mark').find('.pause_span').text("暂停");
         if (rateTypeTemp ==1) {
             uc=54
+            document.getElementsByName("rateType").style.color = "#007AFF";
         }else if (rateTypeTemp == 2){
             uc=55
         }else if (rateTypeTemp == 2){
