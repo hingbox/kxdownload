@@ -13,94 +13,68 @@
     <style>
         body{
             color:#999999;
+            margin:0;
+            padding:0;
+            overflow:hidden;
+            background:#222222;	
             font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
-            font-size: 14px;
+            font-size:14px;
         }
         #main{
-            width: 650px;
-            height: 500px;
+            width: window.innerWidth;
+            height: 450px;
             background-color: #333333;
         }
         #title{
             color: white;
             padding-left: 25px;
-            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
-            font-size: 20px;
-            line-height: 50px;
-        }
-        .down-dir{
-            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
-            font-size: 16px;
-            color: #007AFF;
-        }
-        #box{
-            height: 100px;
-            overflow:auto;
-            border: 1px solid #252525;
-            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
-            font-size: 16px;
+            padding-top:10px;
+            height:40px;
+            font-size:18px;
         }
         #radio_div{
             color:white;
             padding-left: 25px;
             padding-right: 25px;
-            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
-            font-size: 16px;
         }
         #cont_list{
             color: white;
-            /*padding: 25px;*/
-            margin: 25px;
+            padding: 25px;
         }
         #route{
             padding: 25px;
-            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
-            font-size: 16px;
+            height:30px;
         }
         #button_part{
             color:#FFFFFF;
             text-align:center;
-            height:50px;
-            line-height:50px;
+            height:30px;
+            line-height:30px;
         }
         #cont_list{
             background-color: #2D2D2D;
             padding: 20px;
-            margin-top: 5px;
         }
         #cancel_btn{
             border:none;
             vertical-align:middle;
-            height: 50px;
-            width: 120px;
+            height: 30px;
+            width: 90px;
             border-radius:4px;
             font-size: 18px;
             background-color: #4C4C4C;
             color: #FFFFFF;
-            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
-            font-size: 22px;
-        }
-        .select-font{
-            background: #2D2D2D;
-            height: 30px;
-            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
-            font-size: 16px;
-        }
-        #check_all,#check_reverse {
-            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
-            font-size: 14px;
         }
         #download_btn{
             vertical-align:middle;
-            height: 50px;
-            width: 120px;
+            height: 30px;
+            width: 90px;
             border-radius:4px;
             margin-right: 50px;
+            font-size:18px;
             background-color: #4C4C4C;
             color: #FFFFFF;
-            border:none;
-            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
-            font-size: 22px;
+            border:none
         }
         #select_nums{
             display: inline-block;
@@ -275,10 +249,11 @@
 
         }
         //=======单选chekbox end==========
-        function onload(){
-            updateFolder();
-        }
 
+
+				function onload(){
+					updateFolder();
+				}
         //=============点击下载按钮  start=============
         function download(){
             //判断是否选择了 下载的节目
@@ -319,7 +294,7 @@
             //进行鉴权 鉴权通过 跳转到下载页面
             var cid = check_vals;//测试的电影节目id=649039736;续集节目id=649039777
             var download_data=[];//存储 获取下载地址的数据
-            //var uc = "54";//54(标清)、55(高清)、91(720P)、92(1080P)
+            //var uc = "54";//54(标清)、55(高清)、9(720P)、92(1080P)
             var userId = "901785618";
             var userToken = "E7DCCC527ABB7D5DB2FD";
             var downNewUrl ="http://47.104.220.221:8081/api/getDownUrl";
@@ -364,7 +339,7 @@
 //                                $.cookie('cc' , '' ,{expires: -1});
                                 //$.cookie("cc",check_datas);
 
-                                window.location.href='/html/downmanager.html';
+                               //window.location.href='/html/downmanager.html';
                             }else if ("403" == body[c].code){
                                 //TODO 表示拥护没有权限下载，提示用户需要收费
                                 console.log("没有权限下载")
@@ -382,27 +357,9 @@
                         //存储用户获取到的播放数据(文件大小，文件下载地址)
                         localStorage.setItem('downloadData', JSON.stringify(download_data));
                         console.log("==================downloadData"+JSON.stringify(download_data));
-
-                        var receiveData = localStorage.getItem('selectData');//得到用户选择数据
-                        var receiveDownloadData = localStorage.getItem('downloadData');//得到从下载接口返回的数据
-                        var download_datas = $.parseJSON(receiveDownloadData);
-                        var d = $.parseJSON(receiveData);
-                        var customerSelectData=[];
-                        for(var i in d) {
-                            downdata = JSON.parse(d[i]);
-                            for (x in download_datas) {
-                                if (i == x) {
-                                    //console.log("url->"+download_datas[x].url+"mediaSize->"+download_datas[x].mediaSize)
-                                    downdata.mediaSize = parseInt(download_datas[x].mediaSize / 1024 / 2014);
-                                    downdata.url = download_datas[x].url;
-                                    customerSelectData.push(downdata)
-                                }
-                            }
-                        }
-                        //需要传给c++底层的信息(片名，大小，分辨率，下载地址)
-                        console.log("newdata",JSON.stringify(customerSelectData));
-                        migu_app.SetConfig("downloadData",JSON.stringify(customerSelectData));
-
+                        
+                        
+                        migu_app.SetConfig("downloadData",JSON.stringify(download_data));
 
                     }else {
                         console.log("请求失败");
@@ -420,15 +377,16 @@
             migu_app.SetConfig("chooseFolder","updateFolder");
         }
         function updateFolder(){
-            document.getElementById("path").value=migu_app.GetConfig("storepath");
-            document.getElementById("pathsize").innerText= migu_app.GetConfig("storepathsize");
+        	document.getElementById("path").value=migu_app.GetConfig("storepath");
+        	document.getElementById("pathsize").innerText= migu_app.GetConfig("storepathsize");
         }
+        
         //========点击 更改下载目录  start=====
 
         //========点击 取消按钮  start=====
         function cancelBtn(){
-//            document.getElementById("download_btn").style.background="#4C4C4C";
-//            document.getElementById("cancel_btn").style.background="#007AFF";
+            //document.getElementById("download_btn").style.background="#4C4C4C";
+            //document.getElementById("cancel_btn").style.background="#007AFF";
             //TODO 关闭窗口
             migu_app.SetConfig("close","mini");
         }
@@ -483,11 +441,11 @@
 
     <!-- 节目列表部分 start-->
     <div id="cont_list">
-        <div class="select-font">选择下载文件</div>
-        <div id="box"  class="test-1">
+        <div style="background: #2D2D2D">选择下载文件</div>
+        <div id="box" style="height: 150px;overflow:auto;border: 1px solid #252525;" class="test-1">
         </div>
-        <div style="background:#181818;border-radius: 3px;margin-top: 1px;opacity: 0.5">
-            <p id="check_all" style="display: inline-block;height:5px;line-height:5px;margin-left: 5px;" onclick="allcheck()">全选</p>
+        <div style="background:#181818;border-radius: 3px;margin-top: 1px;">
+            <p id="check_all" style="display: inline-block;height:5px;line-height:5px" onclick="allcheck()">全选</p>
             <p id="check_reverse" style="display: inline-block;height:5px;line-height:5px" onclick="reversecheck()">反选</p>
             <p id="select_nums"></p>
         </div>
@@ -495,14 +453,22 @@
     <!-- 节目列表部分 end-->
 
     <!-- 文件保存路径 start-->
+    <!--<div id="route">-->
+        <!--<div style="height: 20px;line-height: 20px;vertical-align:middle">-->
+            <!--<span style="color: #999999">保存为：</span>-->
+            <!--<input style="width: 200px;;background: #252525;border-width: 0;height: 21px;color:#ffffff;" type="text" name="path" id="path" value="D:\migu" disabled="disabled" />-->
+            <!--<span style="background:#252525;line-height: 20px;vertical-align:middle;margin-left: -5px;">100G</span>-->
+            <!--<span onclick="updateDownloadDir() "style="color: #007AFF;line-height: 20px;vertical-align:middle;float: right">更改下载目录</span>-->
+        <!--</div>-->
+    <!--</div>-->
     <div id="route">
         <div style="display: inline-block" >
             <div style="float: left;margin-top: 3px;">保存为：</div>
             <div style="float: left" class="box">
-                <input style="width: 300px;background: #252525;border-width: 0;" type="text" name="path" id="path" value="D:\migu" disabled="disabled" >
-                <span style="margin-right: 5px;">100G</span>
+                <input style="width: 300px;background: #252525;border-width: 0;color:#ffffff;" type="text" name="path" id="path" value="D:\migu" disabled="disabled" >
+                <span style="margin-right: 5px;" id="pathsize" name="pathsize">100G</span>
             </div>
-            <div style="float: left;margin-left: 10px;margin-top: 3px;"><span class="down-dir" onclick="updateDownloadDir()">更改下载目录</span></div>
+            <div style="float: left;margin-left: 10px;margin-top: 3px;"><span onclick="updateDownloadDir()" style="color: #007AFF;">更改下载目录</span></div>
         </div>
     </div>
 
@@ -515,6 +481,29 @@
     </div>
     <!-- 下载，取消按钮 部分 end-->
 </div>
+<script>
+    $(function(){
+        var data = [{
+            "cid":"649371244",
+            "name":"张艺谋和他的“影”",
+            "imgH":"http://wapx.cmvideo.cn:8080/publish/poms/image/5500/601/419/201811160001_p2534552707_HSJ720H.jpg",
+            "Detail":"记录《影》诞生的全过程，展现张艺谋导演及电影主创如何把创意、文字变成一幅完整的水墨丹青的美学画卷。选取幕后电影人作为记录对象，包括演员、美术、摄影、道具、服装、剪辑等各个工种的工作人员，讲述他们为电影中每一帧拍摄做出的细致考量。影片揭示邓超一人分饰两角的秘密，邓超孙俪夫妇互怼互黑的日常，聚光灯外不问收获但问耕耘的幕后英雄，让观众了解中国电影工业的全貌，体验电影人非凡匠心的感动瞬间。",
+            "mediaSize":"1191078363",
+            "usageCode":"54",
+            "timeLong":"110"
+        },{
+            "cid":"649371244",
+            "name":"张艺谋和他的“影”",
+            "imgH":"http://wapx.cmvideo.cn:8080/publish/poms/image/5500/601/419/201811160001_p2534552707_HSJ720H.jpg",
+            "Detail":"记录《影》诞生的全过程，展现张艺谋导演及电影主创如何把创意、文字变成一幅完整的水墨丹青的美学画卷。选取幕后电影人作为记录对象，包括演员、美术、摄影、道具、服装、剪辑等各个工种的工作人员，讲述他们为电影中每一帧拍摄做出的细致考量。影片揭示邓超一人分饰两角的秘密，邓超孙俪夫妇互怼互黑的日常，聚光灯外不问收获但问耕耘的幕后英雄，让观众了解中国电影工业的全貌，体验电影人非凡匠心的感动瞬间。",
+            "mediaSize":"1191078363",
+            "usageCode":"54",
+            "timeLong":"110"
+        }];
+        $.cookie('data',JSON.stringify(data));
+    });
+
+</script>
 <script>
     var rateType = $("input[type='radio']:checked").val();
     var uc;

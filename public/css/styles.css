@@ -54,14 +54,14 @@ ol, ul {
   color: #999999;
   cursor: pointer;
   display: inline-block;
-  font-weight: 600;
+  /*font-weight: 600;*/
   float: left;
   padding: 0.625rem 1.25rem;
   position: relative;
   -webkit-transition: 0.1s ease-in-out;
   transition: 0.1s ease-in-out;
   font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
-  font-size: 20px;
+  font-size: 18px;
 }
 .tabBlock-tab:last-of-type {
   /*border-right-style: solid;*/
@@ -69,7 +69,7 @@ ol, ul {
 .tabBlock-tab::before, .tabBlock-tab::after {
   content: "";
   display: block;
-  height: 4px;
+  /*height: 4px;*/
   position: absolute;
   -webkit-transition: 0.1s ease-in-out;
   transition: 0.1s ease-in-out;

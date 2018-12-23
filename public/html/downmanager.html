@@ -34,6 +34,10 @@
       border-bottom: 1px solid #7992a8;
       margin: 1px;
     }
+    /*.content-name{*/
+      /*font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";*/
+      /*font-size: 10px;*/
+    /*}*/
     .progress .progress-bar{
       border-radius: 20px;
       position: relative;
@@ -74,6 +78,7 @@
     .div-center{
       float: left;
     }
+
   </style>
   <style>
     .test-1::-webkit-scrollbar {/*滚动条整体样式*/
@@ -137,7 +142,7 @@
   <!--</style>-->
 </head>
 <body >
-  <figure class="tabBlock" style="width: 727px;">
+  <figure class="tabBlock" style="width: 650px;">
   <ul class="tabBlock-tabs">
     <li class="tabBlock-tab is-active">下载中(<span id="download_num">0</span>)</li>
     <li class="tabBlock-tab">已下载(<span id="downloaded_num">0</span>)</li>
@@ -147,8 +152,8 @@
       <ul id="list">
         <div style="overflow-y: auto;height: 250px;" class="test-1">
           <div id="mybox">
-            <!--<li>-->
-              <!--<div>-->
+            <!--<li >-->
+              <!--<div style="width: 600px;">-->
                 <!--<div style="float: left">-->
                   <!--<input class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg">-->
                 <!--</div>-->
@@ -200,7 +205,7 @@
                     <!--<span class="file_size_before">1000M/</span>-->
                     <!--<span class="file_size_after">5000M</span>-->
                   <!--</div>-->
-                <!--</div>-->
+                </div>
 
                 <!--<div style="float: left;margin-top: 20px;margin-left: 8px;">-->
                   <!--<span style="margin-top3:3px;color: #CCCCCC;">10%</span>-->
@@ -208,12 +213,12 @@
                 <!--</div>-->
               <!--</div>-->
             <!--</li>-->
-          </div>
+          <!--</div>-->
           <!--<div id="box" style="height: 100px;overflow:auto;border: 1px solid #252525;" class="test-1">-->
           <!--</div>-->
 
         </div>
-        <div style="background-color: #181818">
+        <div class="start-stop-div" style="background-color: #181818;filter:alpha(Opacity=80);-moz-opacity:0.1;opacity: 0.1;">
           <div>
             <label style="color:red;"><input style="margin-left: 13px;margin-top:11px;" type="checkbox" id="all" onclick="chk()"></label>
             <img id="bottom_start" onclick="bottom_start()" src="../images/ic_start_d.png"><span id="bottom_start_span">开始</span>
@@ -232,7 +237,7 @@
                 <img style="width: 50px;height: 50px;" src="../images/test.jpg">
               </div>
               <div>
-              <div style="float: left;width: 400px;height: 50px;">
+              <div style="float: left;width: 520px;height: 50px;">
                 <div style="height: 27px;">
                   <p style="display: inline-block;color: #CCCCCC">节目名称1</p>
                   <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
@@ -255,7 +260,7 @@
                 <img style="width: 50px;height: 50px;" src="../images/test.jpg">
               </div>
               <div>
-                <div style="float: left;width: 400px;height: 50px;">
+                <div style="float: left;width: 520px;height: 50px;">
                   <div style="height: 27px;">
                     <p style="display: inline-block;color: #CCCCCC">节目名称1</p>
                     <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
@@ -278,7 +283,7 @@
 
     <!-- 底部 所有任务下载关机按钮，文件存储按钮，设置按钮 start-->
     <div style="width: auto;height: 50px;margin-top: 5px;">
-      <div style="float: left"><img id="image" onclick="changeImage()" src="../images/ic_sw_off.png"/><span style="color: #007AFF;">所有任务下载后自动关机</span></div>
+      <div class="auto-shutdown-div" style="float: left"><img id="image" onclick="changeImage()" src="../images/ic_sw_off.png"/><span style="color: #007AFF;">所有任务下载后自动关机</span></div>
       <div style="float: right"><img onclick="openDir()" src="../images/ic_store.png"/><img onclick="openSettings()" src="../images/ic_setting.png"/></div>
     </div>
     <!-- 底部 所有任务下载关机按钮，文件存储按钮，设置按钮 end-->
@@ -453,15 +458,19 @@
     var d = $.parseJSON(receiveData);
     var html="";
     if (d == null){
+      html="<div style='text-align: center;;color: #666666'><p style='display: block;line-height: 240px'>点击右上角新建下载</p></div>";
       $('#mybox').html(html);
+      $(".auto-shutdown-div").css('display','none');
+      $(".start-stop-div").css('display','none');
+
     }else{
       var content_width="";
       $("#download_num").text(d.length);
       console.log("用户选择了"+ d.length+"集");
       if(d.length <=3){
-        content_width="400px";
+        content_width="480px";
       }else{
-        content_width="390px";
+        content_width="470px";
       }
       //解析下载地址数据
       var download_datas = $.parseJSON(receiveDownloadData);
@@ -480,13 +489,13 @@
         //动态添加下载中列表)
         html +='<li><div><div style="float: left"><input class="mychk" name="mychk" type="checkbox" value="'+downdata.cid+'" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="'+downdata.imgH+'"></div>'+
                 '<div style="float: left;width: '+content_width+';">'+
-                '<p style="display: inline-block;color: #CCCCCC">'+downdata.newName+'</p>'+
+                '<p class="content-name" style="display: inline-block;color: #CCCCCC">'+downdata.newName+'</p>'+
                 '<div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">'+
                 '<img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;'+
                 '<span class="pause_down_span" style="color: #CCCCCC">下载</span>'+
                 '</div>'+
                 '<div class="progress">'+
-                '<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 10%;">'+
+                '<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 20%;">'+
                 '</div>'+
                 '</div>'+
                 '<div style="color:#CCCCCC;" class="mark">'+
@@ -496,7 +505,7 @@
                 '</div>'+
                 '</div>'+
                 '<div style="float: left;margin-top: 20px;margin-left: 4px;">'+
-                '<span style="margin-top:3px;color: #CCCCCC;">10%</span>'+
+                '<span style="margin-top:3px;color: #CCCCCC;">20%</span>'+
                 '<img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>'+
                 '</div>'+
                 '</div>'+
