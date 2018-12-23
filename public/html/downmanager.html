@@ -34,10 +34,10 @@
       border-bottom: 1px solid #7992a8;
       margin: 1px;
     }
-    /*.content-name{*/
-      /*font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";*/
-      /*font-size: 10px;*/
-    /*}*/
+    .content-name{
+      font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+      font-size: 14px;
+    }
     .progress .progress-bar{
       border-radius: 20px;
       position: relative;
@@ -54,6 +54,14 @@
       position: absolute;
       top: -40px;
       right: -10px;
+    }
+    #bottom_start_span,#bottom_start_delete{
+      font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+      font-size: 14px;
+    }
+    .pause_down_span,.auto-down-span{
+      font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+      font-size: 14px;
     }
     .progress .progress-value:after{
       content: "";
@@ -99,9 +107,15 @@
     }
 
     .line-limit-length {
+      font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+      font-size: 12px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap; //文本不换行，这样超出一行的部分被截取，显示...
+    }
+    .pause_span,.file_size_before,.file_size_after{
+      font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+      font-size: 14px;
     }
   </style>
 
@@ -218,9 +232,10 @@
           <!--</div>-->
 
         </div>
-        <div class="start-stop-div" style="background-color: #181818;filter:alpha(Opacity=80);-moz-opacity:0.1;opacity: 0.1;">
+        <!--filter:alpha(Opacity=80);-moz-opacity:0.6;opacity: 0.6;-->
+        <div class="start-stop-div" style="background-color: #181818;">
           <div>
-            <label style="color:red;"><input style="margin-left: 13px;margin-top:11px;" type="checkbox" id="all" onclick="chk()"></label>
+            <label style="color:red;"><input style="margin-left: 3px;margin-top:11px;" type="checkbox" id="all" onclick="chk()"></label>
             <img id="bottom_start" onclick="bottom_start()" src="../images/ic_start_d.png"><span id="bottom_start_span">开始</span>
             <!--<img id="bottom_pause" onclick="bottom_pause()" src="../img/ic_pause_d.png"><span id="bottom_start_pause">暂停</span>-->
             <img id="bottom_delete" onclick="bottom_delete()" src="../images/ic_delete_d.png"/><span id="bottom_start_delete">删除</span>
@@ -231,59 +246,62 @@
     <div class="tabBlock-pane">
       <ul>
         <div style="overflow-y: auto;height: 250px;" class="test-1">
-          <li>
-            <div style="height: 60px;line-height: 20px;">
-              <div style="float: left;">
-                <img style="width: 50px;height: 50px;" src="../images/test.jpg">
-              </div>
-              <div>
-              <div style="float: left;width: 520px;height: 50px;">
-                <div style="height: 27px;">
-                  <p style="display: inline-block;color: #CCCCCC">节目名称1</p>
-                  <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
-                    <img class="single_pause_img" onclick="finishPlay(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;
-                    <span class="pause_down_span" style="color: #CCCCCC">播放</span>
-                  </div>
+          <div id="my_second_box">
+            <li>
+              <div style="height: 60px;line-height: 20px;">
+                <div style="float: left;">
+                  <img style="width: 50px;height: 50px;" src="../images/test.jpg">
                 </div>
-                  <div style="float: bottom;color:#CCCCCC;"><p class="line-limit-length">节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述</p></div>
-                </div>
-              </div>
-
-              <div style="float: left;margin-top: 10px;margin-left: 8px;">
-                <img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div style="height: 60px;line-height: 20px;">
-              <div style="float: left;">
-                <img style="width: 50px;height: 50px;" src="../images/test.jpg">
-              </div>
-              <div>
-                <div style="float: left;width: 520px;height: 50px;">
-                  <div style="height: 27px;">
-                    <p style="display: inline-block;color: #CCCCCC">节目名称1</p>
-                    <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
-                      <img class="single_pause_img" onclick="finishPlay(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;
-                      <span class="pause_down_span" style="color: #CCCCCC">播放</span>
+                <div>
+                  <div style="float: left;width: 520px;height: 50px;">
+                    <div style="height: 27px;">
+                      <p class="content-name" style="display: inline-block;color: #CCCCCC">节目名称1</p>
+                      <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
+                        <img class="single_pause_img" onclick="finishPlay(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;
+                        <span class="pause_down_span" style="color: #CCCCCC">播放</span>
+                      </div>
                     </div>
+                    <div style="float: bottom;color:#CCCCCC;"><p class="line-limit-length">节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述</p></div>
                   </div>
-                  <div style="float: bottom;color:#CCCCCC;"><p class="line-limit-length">节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述</p></div>
+                </div>
+
+                <div style="float: left;margin-top: 10px;margin-left: 8px;">
+                  <img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>
                 </div>
               </div>
+            </li>
+            <li>
+              <div style="height: 60px;line-height: 20px;">
+                <div style="float: left;">
+                  <img style="width: 50px;height: 50px;" src="../images/test.jpg">
+                </div>
+                <div>
+                  <div style="float: left;width: 520px;height: 50px;">
+                    <div style="height: 27px;">
+                      <p style="display: inline-block;color: #CCCCCC">节目名称1</p>
+                      <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
+                        <img class="single_pause_img" onclick="finishPlay(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;
+                        <span class="pause_down_span" style="color: #CCCCCC">播放</span>
+                      </div>
+                    </div>
+                    <div style="float: bottom;color:#CCCCCC;"><p class="line-limit-length">节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述</p></div>
+                  </div>
+                </div>
 
-              <div style="float: left;margin-top: 10px;margin-left: 8px;">
-                <img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>
+                <div style="float: left;margin-top: 10px;margin-left: 8px;">
+                  <img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
+          </div>
+
         </div>
       </ul>
     </div>
 
     <!-- 底部 所有任务下载关机按钮，文件存储按钮，设置按钮 start-->
     <div style="width: auto;height: 50px;margin-top: 5px;">
-      <div class="auto-shutdown-div" style="float: left"><img id="image" onclick="changeImage()" src="../images/ic_sw_off.png"/><span style="color: #007AFF;">所有任务下载后自动关机</span></div>
+      <div class="auto-shutdown-div" style="float: left"><img id="image" onclick="changeImage()" src="../images/ic_sw_off.png"/><span class="auto-down-span" style="color: #007AFF;">所有任务下载后自动关机</span></div>
       <div style="float: right"><img onclick="openDir()" src="../images/ic_store.png"/><img onclick="openSettings()" src="../images/ic_setting.png"/></div>
     </div>
     <!-- 底部 所有任务下载关机按钮，文件存储按钮，设置按钮 end-->
@@ -462,6 +480,10 @@
       $('#mybox').html(html);
       $(".auto-shutdown-div").css('display','none');
       $(".start-stop-div").css('display','none');
+
+      $('#my_second_box').html(html);
+
+
 
     }else{
       var content_width="";
