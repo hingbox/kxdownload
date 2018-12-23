@@ -60,6 +60,8 @@ ol, ul {
   position: relative;
   -webkit-transition: 0.1s ease-in-out;
   transition: 0.1s ease-in-out;
+  font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+  font-size: 20px;
 }
 .tabBlock-tab:last-of-type {
   /*border-right-style: solid;*/

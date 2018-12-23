@@ -137,7 +137,7 @@
   <!--</style>-->
 </head>
 <body >
-  <figure class="tabBlock">
+  <figure class="tabBlock" style="width: 727px;">
   <ul class="tabBlock-tabs">
     <li class="tabBlock-tab is-active">下载中(<span id="download_num">0</span>)</li>
     <li class="tabBlock-tab">已下载(<span id="downloaded_num">0</span>)</li>
@@ -278,7 +278,7 @@
 
     <!-- 底部 所有任务下载关机按钮，文件存储按钮，设置按钮 start-->
     <div style="width: auto;height: 50px;margin-top: 5px;">
-      <!--<div style="float: left"><img id="image" onclick="changeImage()" src="../images/ic_sw_off.png"/><span style="color: #007AFF;">所有任务下载后自动关机</span></div>-->
+      <div style="float: left"><img id="image" onclick="changeImage()" src="../images/ic_sw_off.png"/><span style="color: #007AFF;">所有任务下载后自动关机</span></div>
       <div style="float: right"><img onclick="openDir()" src="../images/ic_store.png"/><img onclick="openSettings()" src="../images/ic_setting.png"/></div>
     </div>
     <!-- 底部 所有任务下载关机按钮，文件存储按钮，设置按钮 end-->
@@ -452,54 +452,59 @@
 //    var para= $.cookie("cc");
     var d = $.parseJSON(receiveData);
     var html="";
-    var content_width="";
-    $("#download_num").text(d.length);
-    console.log("用户选择了"+ d.length+"集");
-    if(d.length <=3){
-      content_width="400px";
+    if (d == null){
+      $('#mybox').html(html);
     }else{
-      content_width="390px";
-    }
-    //解析下载地址数据
-    var download_datas = $.parseJSON(receiveDownloadData);
-
-    for(var i in d){
-      downdata = JSON.parse(d[i]);
-      for (x in download_datas){
-        if (i == x){
-          //console.log("url->"+download_datas[x].url+"mediaSize->"+download_datas[x].mediaSize)
-          downdata.mediaSize = parseInt(download_datas[x].mediaSize/1024/2014);
-          downdata.url = download_datas[x].url;
-        }
+      var content_width="";
+      $("#download_num").text(d.length);
+      console.log("用户选择了"+ d.length+"集");
+      if(d.length <=3){
+        content_width="400px";
+      }else{
+        content_width="390px";
       }
+      //解析下载地址数据
+      var download_datas = $.parseJSON(receiveDownloadData);
+
+      for(var i in d){
+        downdata = JSON.parse(d[i]);
+        for (x in download_datas){
+          if (i == x){
+            //console.log("url->"+download_datas[x].url+"mediaSize->"+download_datas[x].mediaSize)
+            downdata.mediaSize = parseInt(download_datas[x].mediaSize/1024/2014);
+            downdata.url = download_datas[x].url;
+          }
+        }
 //      console.log(d[i].length);
-          console.log(downdata.cid,downdata.newName,downdata.imgH,downdata.detail,downdata.timeLong,downdata.uc);
-      //动态添加下载中列表)
-          html +='<li><div><div style="float: left"><input class="mychk" name="mychk" type="checkbox" value="'+downdata.cid+'" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="'+downdata.imgH+'"></div>'+
-            '<div style="float: left;width: '+content_width+';">'+
-            '<p style="display: inline-block;color: #CCCCCC">'+downdata.newName+'</p>'+
-            '<div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">'+
-            '<img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;'+
-            '<span class="pause_down_span" style="color: #CCCCCC">下载</span>'+
-            '</div>'+
-            '<div class="progress">'+
-            '<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 10%;">'+
-            '</div>'+
-            '</div>'+
-            '<div style="color:#CCCCCC;" class="mark">'+
-            '<span  class="pause_span"></span>'+
-            '<span class="file_size_before">1000M/</span>'+
-            '<span class="file_size_after">'+downdata.mediaSize+'M</span>'+
-            '</div>'+
-            '</div>'+
-            '<div style="float: left;margin-top: 20px;margin-left: 4px;">'+
-            '<span style="margin-top:3px;color: #CCCCCC;">10%</span>'+
-            '<img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>'+
-            '</div>'+
-            '</div>'+
-            '</li>';
-            $('#mybox').html(html);
+        console.log(downdata.cid,downdata.newName,downdata.imgH,downdata.detail,downdata.timeLong,downdata.uc);
+        //动态添加下载中列表)
+        html +='<li><div><div style="float: left"><input class="mychk" name="mychk" type="checkbox" value="'+downdata.cid+'" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="'+downdata.imgH+'"></div>'+
+                '<div style="float: left;width: '+content_width+';">'+
+                '<p style="display: inline-block;color: #CCCCCC">'+downdata.newName+'</p>'+
+                '<div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">'+
+                '<img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;'+
+                '<span class="pause_down_span" style="color: #CCCCCC">下载</span>'+
+                '</div>'+
+                '<div class="progress">'+
+                '<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 10%;">'+
+                '</div>'+
+                '</div>'+
+                '<div style="color:#CCCCCC;" class="mark">'+
+                '<span  class="pause_span"></span>'+
+                '<span class="file_size_before">1000M/</span>'+
+                '<span class="file_size_after">'+downdata.mediaSize+'M</span>'+
+                '</div>'+
+                '</div>'+
+                '<div style="float: left;margin-top: 20px;margin-left: 4px;">'+
+                '<span style="margin-top:3px;color: #CCCCCC;">10%</span>'+
+                '<img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>'+
+                '</div>'+
+                '</div>'+
+                '</li>';
+        $('#mybox').html(html);
+      }
     }
+
   });
 </script>
 <!--<script src='../js/jquery.js'></script>-->

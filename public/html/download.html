@@ -13,27 +13,49 @@
     <style>
         body{
             color:#999999;
+            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+            font-size: 14px;
         }
         #main{
             width: window.innerWidth;
-            height: 450px;
+            height: 500px;
             background-color: #333333;
         }
         #title{
             color: white;
             padding-left: 25px;
+            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+            font-size: 20px;
+            line-height: 50px;
+        }
+        .down-dir{
+            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+            font-size: 16px;
+            color: #007AFF;
+        }
+        #box{
+            height: 100px;
+            overflow:auto;
+            border: 1px solid #252525;
+            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+            font-size: 16px;
         }
         #radio_div{
             color:white;
             padding-left: 25px;
             padding-right: 25px;
+            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+            font-size: 16px;
         }
         #cont_list{
             color: white;
-            padding: 25px;
+            /*padding: 25px;*/
+            margin: 25px;
         }
         #route{
             padding: 25px;
+            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+            font-size: 16px;
         }
         #button_part{
             color:#FFFFFF;
@@ -44,27 +66,41 @@
         #cont_list{
             background-color: #2D2D2D;
             padding: 20px;
+            margin-top: 5px;
         }
         #cancel_btn{
             border:none;
             vertical-align:middle;
-            height: 30px;
-            width: 90px;
+            height: 50px;
+            width: 120px;
             border-radius:4px;
             font-size: 18px;
             background-color: #4C4C4C;
             color: #FFFFFF;
+            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+            font-size: 22px;
+        }
+        .select-font{
+            background: #2D2D2D;
+            height: 30px;
+            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+            font-size: 16px;
+        }
+        #check_all,#check_reverse {
+            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+            font-size: 14px;
         }
         #download_btn{
             vertical-align:middle;
-            height: 30px;
-            width: 90px;
+            height: 50px;
+            width: 120px;
             border-radius:4px;
             margin-right: 50px;
-            font-size:18px;
             background-color: #4C4C4C;
             color: #FFFFFF;
-            border:none
+            border:none;
+            font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+            font-size: 22px;
         }
         #select_nums{
             display: inline-block;
@@ -418,11 +454,11 @@
 
     <!-- 节目列表部分 start-->
     <div id="cont_list">
-        <div style="background: #2D2D2D">选择下载文件</div>
-        <div id="box" style="height: 100px;overflow:auto;border: 1px solid #252525;" class="test-1">
+        <div class="select-font">选择下载文件</div>
+        <div id="box"  class="test-1">
         </div>
-        <div style="background:#181818;border-radius: 3px;margin-top: 1px;">
-            <p id="check_all" style="display: inline-block;height:5px;line-height:5px" onclick="allcheck()">全选</p>
+        <div style="background:#181818;border-radius: 3px;margin-top: 1px;opacity: 0.5">
+            <p id="check_all" style="display: inline-block;height:5px;line-height:5px;margin-left: 5px;" onclick="allcheck()">全选</p>
             <p id="check_reverse" style="display: inline-block;height:5px;line-height:5px" onclick="reversecheck()">反选</p>
             <p id="select_nums"></p>
         </div>
@@ -445,7 +481,7 @@
                 <input style="width: 300px;background: #252525;border-width: 0;" type="text" name="path" id="path" value="D:\migu" disabled="disabled" >
                 <span style="margin-right: 5px;">100G</span>
             </div>
-            <div style="float: left;margin-left: 10px;margin-top: 3px;"><span onclick="updateDownloadDir()" style="color: #007AFF;">更改下载目录</span></div>
+            <div style="float: left;margin-left: 10px;margin-top: 3px;"><span class="down-dir" onclick="updateDownloadDir()">更改下载目录</span></div>
         </div>
     </div>
 
