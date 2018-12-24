@@ -195,8 +195,10 @@
 
         //=================获取节目列表start=====
         function getContentList(){
+            //TODO 页面需要传入节目id
             //根据节目id获取节目列表
-            var cid = "648855469";//测试的电影节目id=649371244;续集节目id=648855469
+            //var cid = "648855469";//测试的电影节目id=649371244;续集节目id=648855469
+            var cid = migu_app.GetConfig("cid");//从播放页面获取节目id
 //        var contentDetailUrl ="http://www.miguvideo.com/wap/resource/miguPC_client/data/detailData.jsp?cid="+cid;
             var contentDetailUrl ="http://47.104.220.221:8081/api/getContentInfo";
             var params ={"cid":cid};
@@ -294,6 +296,11 @@
             updateFolder();
         }
 
+        //获取用户信息
+        function getUserInfo(){
+            return migu_app.getLoginInfo();
+        }
+
         //=============点击下载按钮  start=============
         function download(){
             //判断是否选择了 下载的节目
@@ -326,12 +333,25 @@
             console.log("用户选择节目名称->"+check_contents);
             console.log("用户选择的数据->"+(check_datas));
 
+            // 获取用户id 和userToken
+            var userId = "";
+            var userToken = "";
+            var infoString = getUserInfo();//获取用户信息  userId,userName
+            if(infoString){
+                infoString = infoString.replace(/'/g, "\"");
+                var info = JSON.parse(infoString);
+                if(info){
+                    userId = info.userId;
+                    userToken = info.userToken;
+                }
+            }
+
             //进行鉴权 鉴权通过 跳转到下载页面
             var cid = check_vals;//测试的电影节目id=649039736;续集节目id=649039777
             var download_data=[];//存储 获取下载地址的数据
             //var uc = "54";//54(标清)、55(高清)、91(720P)、92(1080P)
-            var userId = "901785618";
-            var userToken = "E7DCCC527ABB7D5DB2FD";
+//            var userId = "901785618";
+//            var userToken = "E7DCCC527ABB7D5DB2FD";
             var downNewUrl ="http://47.104.220.221:8081/api/getDownUrl";
             var visitUrl = "http://183.192.162.101:8084";//这个是请求调用获取播放地址，这个地方是预览地址，后面直接传生产地址即可
             var getUrlParams={
