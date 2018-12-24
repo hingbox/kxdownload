@@ -3,13 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>下载视频</title>
-    <!--<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="crossorigin="anonymous"></script>-->
-    <!--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
-
     <script src="../js/jquery.js"></script>
     <script src="../js/jquery.cookie.js"></script>
-    <!--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-    <!--<script src="https://cdn.bootcss.com/spin.js/2.3.2/spin.min.js"></script>-->
     <style>
         body{
             color:#999999;
@@ -133,13 +128,11 @@
             border-radius: 10px;
             -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
             background: #4E4E4E;
-            /*background: #535353;*/
         }
         .test-1::-webkit-scrollbar-track {/*滚动条里面轨道*/
             -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
             border-radius: 10px;
             background: #000000;
-            /*background: #EDEDED;*/
         }
 
     </style>
@@ -197,48 +190,8 @@
         }
     </style>
 
-    <script>
-//        $.ajaxPrefilter( function (options) {
-//            if (options.crossDomain && jQuery.support.cors) {
-//                var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
-//                options.url = http + '//cors-anywhere.herokuapp.com/' + options.url;
-//                options.crossDomain = false;
-//            }
-//        });
-//        $.ajaxPrefilter( function (options) {
-//            if (options.crossDomain && jQuery.support.cors) {
-//                var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
-//                options.url = http + '//cors-anywhere.herokuapp.com/' + options.url;
-//                options.crossDomain = false;
-//            }
-//        });
-
-    </script>
 
     <script>
-        //=================获取码率start==========
-//        var rateType = 1;//默认
-//        var uc;//默认;
-//        var rateTypeTemp = $("input[type='radio']:checked").val();
-//        if (typeof(rateTypeTemp) == "undefined") {
-//                uc=54;
-//            getContentList(uc)
-//        }
-//        function getRate(that){
-//            rateType = $(that).val();
-//            if (rateType == 1){
-//                uc = 54;
-//            } else if (rateType == 2) {
-//                uc = 55;
-//            }else if (rateType == 3) {
-//                uc = 91;
-//            }else if (rateType == 4) {
-//                uc = 92;
-//            }
-//            getContentList(uc);
-//        }
-
-        //=================获取码率end==========
 
         //=================获取节目列表start=====
         function getContentList(){
@@ -365,12 +318,7 @@
                     check_data.push(obj[k].getAttribute("mydata"));
                 }
             }
-//            var arr=[],val;
-//            $('.inputs:checked').each(function(index,element){
-//                val=JSON.parse($(element).attr('mydata'))
-//                arr.push(val);
-//                console.log("hah"+arr);
-//            });
+
             var check_vals = check_val.join(",");
             var check_contents = check_content.join(",");
             var check_datas =(JSON.stringify(check_data));
@@ -399,13 +347,6 @@
                 contentType: "application/json;charset=utf-8",
                 dataType:"json",
                 data:JSON.stringify(getUrlParams),
-//                beforeSend: function (XMLHttpRequest) {
-//                    XMLHttpRequest.setRequestHeader("userId", userId);
-//                    XMLHttpRequest.setRequestHeader("token", userToken);
-//                    XMLHttpRequest.setRequestHeader("SDKCEId", SDKCEId);
-//                    XMLHttpRequest.setRequestHeader("X-UP-CLIENT-CHANNEL-ID", "101700040000001");
-//
-//                },
                 success: function (data) {
                     console.log("data"+JSON.stringify(data));
                     if ("200" == data.code) {
@@ -419,14 +360,8 @@
                                 //TODO 获取到播放，说明鉴权通过了，可以下载了，需要将 用户选择的节目名称，图片，节目详情，文件大小，传到下载管理页面
                                 //需要传到下载管理页面的字段->节目名称,节目封面图，文件码率,节目id,文件大小，下载地址
                                 //跳转到下载管理页面
-                                // 以下方式直接跳转
-//                                for (i=0;i<check_vals.length;i++){
-//                                    console.log("cid=>"+check_val[i]);
-//                                }
-//                                $.cookie('cc' , '' ,{expires: -1});
-                                //$.cookie("cc",check_datas);
 
-                                window.location.href='/html/downmanager.html';
+                                //window.location.href='/html/downmanager.html';
                             }else if ("403" == body[c].code){
                                 //TODO 表示拥护没有权限下载，提示用户需要收费
                                 console.log("没有权限下载")
@@ -439,28 +374,41 @@
                             }
 
                         }
-                        //存储用户选择的数据(分辨率，节目id,节目名称，节目图片，节目时长，节目描述)
-                        localStorage.setItem('selectData', check_datas);
-                        //存储用户获取到的播放数据(文件大小，文件下载地址)
-                        localStorage.setItem('downloadData', JSON.stringify(download_data));
-                        console.log("==================downloadData"+JSON.stringify(download_data));
-
-                        var receiveData = localStorage.getItem('selectData');//得到用户选择数据
-                        var receiveDownloadData = localStorage.getItem('downloadData');//得到从下载接口返回的数据
-                        var download_datas = $.parseJSON(receiveDownloadData);
-                        var d = $.parseJSON(receiveData);
+//                        //存储用户选择的数据(分辨率，节目id,节目名称，节目图片，节目时长，节目描述)
+//                        localStorage.setItem('selectData', check_datas);
+//                        //存储用户获取到的播放数据(文件大小，文件下载地址)
+//                        localStorage.setItem('downloadData', JSON.stringify(download_data));
+//                        console.log("==================downloadData"+JSON.stringify(download_data));
+//
+                        var receiveData =$.parseJSON(check_datas);
+                        var download_datas = $.parseJSON(JSON.stringify(download_data));
                         var customerSelectData=[];
-                        for(var i in d) {
-                            downdata = JSON.parse(d[i]);
+                        for(var i in receiveData) {
+                            downdata = JSON.parse(receiveData[i]);
                             for (x in download_datas) {
                                 if (i == x) {
-                                    //console.log("url->"+download_datas[x].url+"mediaSize->"+download_datas[x].mediaSize)
                                     downdata.mediaSize = parseInt(download_datas[x].mediaSize / 1024 / 2014);
                                     downdata.url = download_datas[x].url;
                                     customerSelectData.push(downdata)
                                 }
                             }
                         }
+
+//                        var d = check_data;
+//                        console.log("cc");
+//                        var customerSelectData=[];
+//                        for(var i in d) {
+//                            downdata = JSON.parse(d[i]);
+//                            for (x in download_data) {
+//                                if (i == x) {
+//                                    //console.log("url->"+download_datas[x].url+"mediaSize->"+download_datas[x].mediaSize)
+//                                    downdata.mediaSize = parseInt(download_data[x].mediaSize);
+//                                    downdata.url = download_data[x].url;
+//                                    downdata.detail="";
+//                                    customerSelectData.push(downdata)
+//                                }
+//                            }
+//                        }
                         //需要传给c++底层的信息(片名，大小，分辨率，下载地址)
                         console.log("newdata",JSON.stringify(customerSelectData));
                         migu_app.SetConfig("downloadData",JSON.stringify(customerSelectData));
@@ -555,7 +503,8 @@
         <div class="select-font">选择下载文件</div>
         <div id="box"  class="test-1">
         </div>
-        <div style="background:#181818;border-radius: 3px;margin-top: 1px;opacity: 0.5">
+        <!--border-radius: 3px;margin-top: 1px;opacity: 0.5-->
+        <div style="background:#181818;">
             <p id="check_all" style="display: inline-block;height:5px;line-height:5px;margin-left: 5px;" onclick="allcheck()">全选</p>
             <p id="check_reverse" style="display: inline-block;height:5px;line-height:5px" onclick="reversecheck()">反选</p>
             <p id="select_nums"></p>
