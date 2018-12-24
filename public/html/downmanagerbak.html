@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
+  <!--<link rel="stylesheet" href="../css/normalize.css">-->
   <link rel="stylesheet" href="../css/styles.css" media="screen" type="text/css" />
   <link rel="stylesheet" href="../css/bootstrap.css" media="screen" type="text/css" />
   <script src="../js/jquery.js"></script>
@@ -118,6 +119,41 @@
     }
   </style>
 
+  <!--<style type="text/css">-->
+    <!--input[type="checkbox"] {-->
+      <!--width: 12px;-->
+      <!--height: 12px;-->
+      <!--display: inline-block;-->
+      <!--text-align: center;-->
+      <!--vertical-align: middle;-->
+      <!--line-height: 12px;-->
+      <!--position: relative;-->
+    <!--}-->
+
+    <!--input[type="checkbox"]::before {-->
+      <!--content: "";-->
+      <!--position: absolute;-->
+      <!--top: 0;-->
+      <!--left: 0;-->
+      <!--background: #fff;-->
+      <!--width: 100%;-->
+      <!--height: 100%;-->
+      <!--border: 1px solid #CACDCF-->
+    <!--}-->
+
+    <!--input[type="checkbox"]:checked::before {-->
+      <!--content: "\2713";-->
+      <!--background-color: #2196F3;-->
+      <!--color: #fff;-->
+      <!--position: absolute;-->
+      <!--top: 0;-->
+      <!--left: 0;-->
+      <!--width: 100%;-->
+      <!--border: 1px solid #2196F3;-->
+      <!--font-size: 12px;-->
+      <!--font-weight: bold;-->
+    <!--}-->
+  <!--</style>-->
 </head>
 <body >
   <figure class="tabBlock" style="width: 650px;">
@@ -130,7 +166,71 @@
       <ul id="list">
         <div style="overflow-y: auto;height: 250px;" class="test-1">
           <div id="mybox">
-          </div>
+            <!--<li >-->
+              <!--<div style="width: 600px;">-->
+                <!--<div style="float: left">-->
+                  <!--<input class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg">-->
+                <!--</div>-->
+                <!--<div style="float: left;width: 400px;">-->
+                  <!--<p style="display: inline-block;color: #CCCCCC">节目名称1</p>-->
+                  <!--<div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">-->
+                    <!--<img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;-->
+                    <!--<span class="pause_down_span" style="color: #CCCCCC">下载</span>-->
+                  <!--</div>-->
+
+                  <!--<div class="progress">-->
+                    <!--<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 10%;">-->
+                    <!--</div>-->
+                  <!--</div>-->
+
+                  <!--<div style="color:#CCCCCC;" class="mark">-->
+                    <!--<span  class="pause_span"></span>-->
+                    <!--<span class="file_size_before">1000M/</span>-->
+                    <!--<span class="file_size_after">5000M</span>-->
+                  <!--</div>-->
+                <!--</div>-->
+
+                <!--<div style="float: left;margin-top: 20px;margin-left: 8px;">-->
+                  <!--<span style="margin-top3:3px;color: #CCCCCC;">10%</span>-->
+                  <!--<img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</li>-->
+
+            <!--<li>-->
+              <!--<div>-->
+                <!--<div style="float: left">-->
+                  <!--<input class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg">-->
+                <!--</div>-->
+                <!--<div style="float: left;width: 400px;">-->
+                  <!--<p style="display: inline-block;color: #CCCCCC">节目名称1</p>-->
+                  <!--<div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">-->
+                    <!--<img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;-->
+                    <!--<span class="pause_down_span" style="color: #CCCCCC">下载</span>-->
+                  <!--</div>-->
+
+                  <!--<div class="progress">-->
+                    <!--<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 10%;">-->
+                    <!--</div>-->
+                  <!--</div>-->
+
+                  <!--<div style="color:#CCCCCC;" class="mark">-->
+                    <!--<span class="pause_span"></span>-->
+                    <!--<span class="file_size_before">1000M/</span>-->
+                    <!--<span class="file_size_after">5000M</span>-->
+                  <!--</div>-->
+                </div>
+
+                <!--<div style="float: left;margin-top: 20px;margin-left: 8px;">-->
+                  <!--<span style="margin-top3:3px;color: #CCCCCC;">10%</span>-->
+                  <!--<img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</li>-->
+          <!--</div>-->
+          <!--<div id="box" style="height: 100px;overflow:auto;border: 1px solid #252525;" class="test-1">-->
+          <!--</div>-->
+
         </div>
         <!--filter:alpha(Opacity=80);-moz-opacity:0.6;opacity: 0.6;-->
         <div class="start-stop-div" style="background-color: #181818;">
@@ -147,51 +247,52 @@
       <ul>
         <div style="overflow-y: auto;height: 250px;" class="test-1">
           <div id="my_second_box">
-            <!--<li>-->
-              <!--<div style="height: 60px;line-height: 20px;">-->
-                <!--<div style="float: left;">-->
-                  <!--<img style="width: 50px;height: 50px;" src="../images/test.jpg">-->
-                <!--</div>-->
-                <!--<div>-->
-                  <!--<div style="float: left;width: 520px;height: 50px;">-->
-                    <!--<div style="height: 27px;">-->
-                      <!--<p class="content-name" style="display: inline-block;color: #CCCCCC">节目名称1</p>-->
-                      <!--<div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">-->
-                        <!--<img class="single_pause_img" onclick="finishPlay(this)" value="111111" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;-->
-                        <!--<span class="pause_down_span" style="color: #CCCCCC">播放</span>-->
-                      <!--</div>-->
-                    <!--</div>-->
-                    <!--<div style="float: bottom;color:#CCCCCC;"><p class="line-limit-length">节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述</p></div>-->
-                  <!--</div>-->
-                <!--</div>-->
-                <!--<div style="float: left;margin-top: 10px;margin-left: 8px;">-->
-                  <!--<img class="" onclick="singleDelete(this)" value="123456" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<div style="height: 60px;line-height: 20px;">-->
-                <!--<div style="float: left;">-->
-                  <!--<img style="width: 50px;height: 50px;" src="../images/test.jpg">-->
-                <!--</div>-->
-                <!--<div>-->
-                  <!--<div style="float: left;width: 520px;height: 50px;">-->
-                    <!--<div style="height: 27px;">-->
-                      <!--<p style="display: inline-block;color: #CCCCCC">节目名称1</p>-->
-                      <!--<div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">-->
-                        <!--<img class="single_pause_img" onclick="finishPlay(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;-->
-                        <!--<span class="pause_down_span" style="color: #CCCCCC">播放</span>-->
-                      <!--</div>-->
-                    <!--</div>-->
-                    <!--<div style="float: bottom;color:#CCCCCC;"><p class="line-limit-length">节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述</p></div>-->
-                  <!--</div>-->
-                <!--</div>-->
+            <li>
+              <div style="height: 60px;line-height: 20px;">
+                <div style="float: left;">
+                  <img style="width: 50px;height: 50px;" src="../images/test.jpg">
+                </div>
+                <div>
+                  <div style="float: left;width: 520px;height: 50px;">
+                    <div style="height: 27px;">
+                      <p class="content-name" style="display: inline-block;color: #CCCCCC">节目名称1</p>
+                      <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
+                        <img class="single_pause_img" onclick="finishPlay(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;
+                        <span class="pause_down_span" style="color: #CCCCCC">播放</span>
+                      </div>
+                    </div>
+                    <div style="float: bottom;color:#CCCCCC;"><p class="line-limit-length">节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述</p></div>
+                  </div>
+                </div>
 
-                <!--<div style="float: left;margin-top: 10px;margin-left: 8px;">-->
-                  <!--<img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</li>-->
+                <div style="float: left;margin-top: 10px;margin-left: 8px;">
+                  <img class="" onclick="singleDelete(this)" src="../images/ic_delete.png" value ="11" style="width: 22px;height: 22px;"/>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div style="height: 60px;line-height: 20px;">
+                <div style="float: left;">
+                  <img style="width: 50px;height: 50px;" src="../images/test.jpg">
+                </div>
+                <div>
+                  <div style="float: left;width: 520px;height: 50px;">
+                    <div style="height: 27px;">
+                      <p style="display: inline-block;color: #CCCCCC">节目名称1</p>
+                      <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
+                        <img class="single_pause_img" onclick="finishPlay(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;
+                        <span class="pause_down_span" style="color: #CCCCCC">播放</span>
+                      </div>
+                    </div>
+                    <div style="float: bottom;color:#CCCCCC;"><p class="line-limit-length">节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述</p></div>
+                  </div>
+                </div>
+
+                <div style="float: left;margin-top: 10px;margin-left: 8px;">
+                  <img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>
+                </div>
+              </div>
+            </li>
           </div>
 
         </div>
@@ -223,18 +324,13 @@
 
   //点击单个节目暂停(停止下载)
   function singlePause(that){
-    var cid = $(that).attr('value');
-
     if($(that).attr('src').match("ic_l_download_d")){
       $(that).attr('src','../images/ic_l_pause_d.png');
 //      $(that).parent('.div_parent').siblings('.mark').find('.texts').slideUp(0).siblings('.pause_span').slideDown(0);
       $(that).parent('.div_parent').siblings('.mark').find('.pause_span').text("暂停");
       $(that).parent('.div_parent').siblings('.mark').find('.file_size_before').hide();
       $(that).parent('.div_parent').siblings('.mark').find('.file_size_after').hide();
-      $(that).siblings('.pause_down_span').text("暂停");
-
-      //暂停
-      migu_app.SetConfig("download_pause",cid)
+      $(that).siblings('.pause_down_span').text("暂停")
 
     } else {
       $(that).attr('src','../images/ic_l_download_d.png');
@@ -243,22 +339,18 @@
       $(that).parent('.div_parent').siblings('.mark').find('.file_size_before').show();
       $(that).parent('.div_parent').siblings('.mark').find('.file_size_after').show();
       $(that).siblings('.pause_down_span').text("下载")
-
-      //开始下载
-      migu_app.SetConfig("download_start",cid)
     }
   }
-
-  //已下载节目列表中的删除按钮
-  function singleDelete(that){
-    qikoo.dialog.confirm('你确定要删除下载任务吗?\t删除将无法恢复。',function(){
-      var cid = $(that).attr('value');
-      //删除
-      migu_app.SetConfig("download_delete",cid);
-    },function(){
-    });
-  }
-
+    //已下载节目列表中的删除按钮
+    function singleDelete(that){
+      qikoo.dialog.confirm('你确定要删除下载任务吗?\t删除将无法恢复。',function(){
+        //根据节目id 进行删除
+        var cid = $(that).attr('value');
+        console.log("delete->cid"+cid);
+        //migu_app.SetConfig("download_delete",cid);
+      },function(){
+      });
+    }
 //    //点击删除
 //    $(".callConfirm").click(function(){
 //      qikoo.dialog.confirm('你确定要删除下载任务吗?\t删除将无法恢复。',function(){
@@ -267,11 +359,11 @@
 //      });
 //    });
 
-  // 下载列表中  点击底部全选开始按钮(暂停按钮)
+  //点击底部全选开始按钮(暂停按钮)
   function bottom_start(){
     //点击开始，校验checkbox是否为空
     var check_list = ($("input[type='checkbox']:checked").length);
-    if ( check_list<=0 ) {
+    if (check_list<=0) {
       alert("您还没有选择节目，请选择节目");
       return false
     }
@@ -280,8 +372,6 @@
       element.src="../images/ic_pause_d.png";
 //      document.getElementById("bottom_start_span").style.color="#FFFFFF";
       $("#bottom_start_span").text("暂停");
-
-
     } else {//点击下载
       element.src="../images/ic_start_d.png";
 //      document.getElementById("bottom_start_span").style.color="#007AFF";
@@ -297,11 +387,6 @@
       console.log("chebox选择的节目进行开始下载->"+check_vals);
       //TODO 根据上面的节目id进行开始下载
     }
-  }
-
-  //下载列表底部 删除按钮
-  function bottom_delete(){
-
   }
 
 </script>
@@ -384,110 +469,86 @@
     }
 
     //已下载中 点击 播放
-    function finishPlay(that){
-      var cid = $(that).attr('value');
+    function finishPlay(){
       alert("需要调用播放器进行播放");
       //TODO 调用本地播放器进行播放
+    }
+    //底部删除
+    function bottom_delete(){
 
     }
-
 </script>
 <script>
   $(function(){
+    var receiveData = localStorage.getItem('selectData');//得到用户选择数据
+    var receiveDownloadData = localStorage.getItem('downloadData');
+//    var para= $.cookie("cc");
+    var d = $.parseJSON(receiveData);
     var html="";
-    var loadedHtml="";
-    //获取下载中的任务数据
-    var listDownLoading= migu_app.GetConfig("list_downloading");
-    //获取下载完成的任务数据
-    var listDownLoaded= migu_app.GetConfig("list_downloaded");
-    var loadDatas = $.parseJSON(listDownLoading);
-    var loadedDatas = $.parseJSON(listDownLoaded);
-    if (loadDatas.length < 0) {
-      html = "<div style='text-align: center;;color: #666666'><p style='display: block;line-height: 240px'>点击右上角新建下载</p></div>";
+    if (d == null){
+      html="<div style='text-align: center;;color: #666666'><p style='display: block;line-height: 240px'>点击右上角新建下载</p></div>";
       $('#mybox').html(html);
       $(".auto-shutdown-div").css('display','none');
       $(".start-stop-div").css('display','none');
-    }else if (loadedDatas.length < 0){
-      html = "<div style='text-align: center;;color: #666666'><p style='display: block;line-height: 240px'>点击右上角新建下载</p></div>";
-      $('#my_second_box').html(html);
-    }else {
 
-      var content_width = "";
-      $("#download_num").text(loadDatas.length);
-      $("#downloaded_num").text(loadedDatas.length);
-      console.log("用户选择了"+ loadDatas.length+"集");
-      if(loadDatas.length <=3){
-        content_width = "480px";
+      $('#my_second_box').html(html);
+
+
+
+    }else{
+      var content_width="";
+      $("#download_num").text(d.length);
+      console.log("用户选择了"+ d.length+"集");
+      if(d.length <=3){
+        content_width="480px";
       }else{
-        content_width = "470px";
+        content_width="470px";
       }
-      var percent=0;
-      //动态添加 节目下载中列表
-      for (var loadData in loadDatas){
-          if (loadData.mediasize > 0){
-              percent = parseInt((loadData.downloadsize * 1.0)/ loadData.mediasize * 100 )
-          }else {
-              percent = 0;
+      //解析下载地址数据
+      var download_datas = $.parseJSON(receiveDownloadData);
+
+      for(var i in d){
+        downdata = JSON.parse(d[i]);
+        for (x in download_datas){
+          if (i == x){
+            //console.log("url->"+download_datas[x].url+"mediaSize->"+download_datas[x].mediaSize)
+            downdata.mediaSize = parseInt(download_datas[x].mediaSize/1024/2014);
+            downdata.url = download_datas[x].url;
           }
-        console.log("loadData=>","[cid]=",loadData.cid,"[name]=",loadData.name,"[url]=",loadData.url,"[img]=",loadData.img,
-                "[uc]=",loadData.uc,"[timelong]=",loadData.timelong,"[mediasize]=",loadData.mediasize,"[downloadsize]=",loadData.downloadsize);
-        html +='<li><div><div style="float: left"><input class="mychk" name="mychk" type="checkbox" value="'+loadData.cid+'" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="'+loadData.img+'"></div>'+
+        }
+//      console.log(d[i].length);
+        console.log(downdata.cid,downdata.newName,downdata.imgH,downdata.detail,downdata.timeLong,downdata.uc);
+        //动态添加下载中列表)
+        html +='<li><div><div style="float: left"><input class="mychk" name="mychk" type="checkbox" value="'+downdata.cid+'" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="'+downdata.imgH+'"></div>'+
                 '<div style="float: left;width: '+content_width+';">'+
-                '<p class="content-name" style="display: inline-block;color: #CCCCCC">'+loadData.name+'</p>'+
+                '<p class="content-name" style="display: inline-block;color: #CCCCCC">'+downdata.newName+'</p>'+
                 '<div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">'+
-                '<img class="single_pause_img" onclick="singlePause(this)" value="'+ loadData.cid +'" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;'+
+                '<img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;'+
                 '<span class="pause_down_span" style="color: #CCCCCC">下载</span>'+
                 '</div>'+
                 '<div class="progress">'+
-                '<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: '+ percent +'%;">'+
+                '<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 20%;">'+
                 '</div>'+
                 '</div>'+
                 '<div style="color:#CCCCCC;" class="mark">'+
                 '<span  class="pause_span"></span>'+
-                '<span class="file_size_before">'+loadData.downloadsize+'M/</span>'+
-                '<span class="file_size_after">'+loadData.mediasize+'M</span>'+
+                '<span class="file_size_before">1000M/</span>'+
+                '<span class="file_size_after">'+downdata.mediaSize+'M</span>'+
                 '</div>'+
                 '</div>'+
                 '<div style="float: left;margin-top: 20px;margin-left: 4px;">'+
-                '<span style="margin-top:3px;color: #CCCCCC;">'+ percent +'%</span>'+
-                '<img class="" onclick="singleDelete(this)" src="../images/ic_delete.png" value="'+ loadData.cid +'" style="width: 22px;height: 22px;"/>'+
+                '<span style="margin-top:3px;color: #CCCCCC;">20%</span>'+
+                '<img class="" onclick="singleDelete(this)" value="'+downdata.cid+'"src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>'+
                 '</div>'+
                 '</div>'+
                 '</li>';
         $('#mybox').html(html);
       }
-
-      //动态添加 已经下载列表
-      for (var loadedData in loadedDatas) {
-        console.log("loadedData=>","[cid]=",loadedData.cid,"[name]=",loadedData.name,"[detail]=",loadedData.detail,"[img]=",loadedData.img);
-        loadedHtml+='<li><div style="height: 60px;line-height: 20px;">'+
-                '<div style="float: left;">'+
-                '<img style="width: 50px;height: 50px;" src="'+loadedData.img+'">'+
-                '</div>'+
-                '<div>'+
-                '<div style="float: left;width: 520px;height: 50px;">'+
-                '<div style="height: 27px;">'+
-                '<p class="content-name" style="display: inline-block;color: #CCCCCC">'+loadedData.name+'</p>'+
-                '<div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">'+
-                '<img class="single_pause_img" onclick="finishPlay(this)" value="'+ loadedData.cid +'" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;'+
-                '<span class="pause_down_span" style="color: #CCCCCC">播放</span>'+
-                '</div>'+
-                '</div>'+
-                '<div style="float: bottom;color:#CCCCCC;"><p class="line-limit-length">'+ loadedData.detail +'</p></div>'+
-                '</div>'+
-                '</div>'+
-                '<div style="float: left;margin-top: 10px;margin-left: 8px;">'+
-                '<img class="" onclick="singleDelete(this)" value="'+loadedData.cid+'" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>'+
-                '</div>'+
-                '</div>'+
-                '</li>';
-
-      }
-
-
     }
+
   });
 </script>
+<!--<script src='../js/jquery.js'></script>-->
 <script src="../js/downmanger.js"></script>
 </body>
 </html>

@@ -152,6 +152,11 @@
     <!--<input name="rateType" onchange="getRate(this)" type="radio" value="3"/><label>720P</label>-->
     <!--<input name="rateType" onchange="getRate(this)" type="radio" value="4"/><label>1080P<img src="../images/mark_vip.png"/></label>-->
 </div>
+<div>
+    <img src="../images/play.png" onclick="finishPlay(this)" value="11">
+    <img src="../images/play.png" onclick="finishPlay(this)" value="22">
+    <a href="http://www.baidu.com" onclick="return del()">删除</a>
+</div>
 
 
 <script>
@@ -178,6 +183,22 @@
         //console.log(uc)
     }
     console.log("uc->"+uc)
+</script>
+
+<script>
+    var a =23,b=47;
+    console.log(parseInt((a*1.0)/b*100))
+
+    function finishPlay(that){
+        console.log($(that).attr('value'));
+
+    }
+
+            function del(){
+                if(!confirm("确认要删除？")){
+                    window.event.returnValue = false;
+                }
+            }
 </script>
 </body>
 </html>

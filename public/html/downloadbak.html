@@ -353,13 +353,27 @@
 
                         }
                         //存储用户选择的数据(分辨率，节目id,节目名称，节目图片，节目时长，节目描述)
-                        localStorage.setItem('selectData', check_datas);
+                        //localStorage.setItem('selectData', check_datas);
                         //存储用户获取到的播放数据(文件大小，文件下载地址)
-                        localStorage.setItem('downloadData', JSON.stringify(download_data));
-                        console.log("==================downloadData"+JSON.stringify(download_data));
+                        //localStorage.setItem('downloadData', JSON.stringify(download_data));
+                        //console.log("==================downloadData"+JSON.stringify(download_data));
                         
-                        
-                        migu_app.SetConfig("downloadData",JSON.stringify(download_data));
+                        var d = check_data;
+                        console.log("cc");
+                        var customerSelectData=[];
+                        for(var i in d) {
+                            downdata = JSON.parse(d[i]);
+                            for (x in download_data) {
+                                if (i == x) {
+                                    //console.log("url->"+download_datas[x].url+"mediaSize->"+download_datas[x].mediaSize)
+                                    downdata.mediaSize = parseInt(download_data[x].mediaSize);
+                                    downdata.url = download_data[x].url;
+                                    downdata.detail="";
+                                    customerSelectData.push(downdata)
+                                }
+                            }
+                        }                        
+                        migu_app.SetConfig("downloadData",JSON.stringify(customerSelectData));
 
                     }else {
                         console.log("请求失败");

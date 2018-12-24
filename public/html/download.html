@@ -361,7 +361,7 @@
                                 //需要传到下载管理页面的字段->节目名称,节目封面图，文件码率,节目id,文件大小，下载地址
                                 //跳转到下载管理页面
 
-                                //window.location.href='/html/downmanager.html';
+                                window.location.href='/html/downmanager.html';
                             }else if ("403" == body[c].code){
                                 //TODO 表示拥护没有权限下载，提示用户需要收费
                                 console.log("没有权限下载")
@@ -483,11 +483,6 @@
     <hr/>
     <!-- 码率部分 start-->
     <div id="radio_div">
-        <!--全部下载为：
-        <input name="rateType" onchange="getRate(this)" type="radio" value="1" checked /><label>标清</label>
-        <input name="rateType" onchange="getRate(this)" type="radio" value="2"/><label>高清</label>
-        <input name="rateType" onchange="getRate(this)" type="radio" value="3"/><label>720P</label>
-        <input name="rateType" onchange="getRate(this)" type="radio" value="4"/><label>1080P<img src="../images/mark_vip.png"/></label>-->
         <div class="choose">
             全部下载为：
             <label class="radio"><input type="radio" name="rateType" onchange="getRate(this)" value="1" checked><i></i>标清</label>
