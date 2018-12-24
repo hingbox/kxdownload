@@ -380,7 +380,7 @@
 //                        localStorage.setItem('downloadData', JSON.stringify(download_data));
 //                        console.log("==================downloadData"+JSON.stringify(download_data));
 //
-                        var receiveData =$.parseJSON(check_datas);
+                        var receiveData = $.parseJSON(check_datas);
                         var download_datas = $.parseJSON(JSON.stringify(download_data));
                         var customerSelectData=[];
                         for(var i in receiveData) {
@@ -412,7 +412,6 @@
                         //需要传给c++底层的信息(片名，大小，分辨率，下载地址)
                         console.log("newdata",JSON.stringify(customerSelectData));
                         migu_app.SetConfig("downloadData",JSON.stringify(customerSelectData));
-
 
                     }else {
                         console.log("请求失败");
@@ -536,10 +535,9 @@
     }
     function getRate(that){
         var rateTypeTemp = $(that).val();
-        $(that).parent('.radio').siblings('.mark').find('.pause_span').text("暂停");
         if (rateTypeTemp ==1) {
             uc=54
-            document.getElementsByName("rateType").style.color = "#007AFF";
+            //document.getElementsByName("rateType").style.color = "#007AFF";
         }else if (rateTypeTemp == 2){
             uc=55
         }else if (rateTypeTemp == 2){

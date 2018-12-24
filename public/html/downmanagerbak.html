@@ -367,28 +367,64 @@
       alert("您还没有选择节目，请选择节目");
       return false
     }
+    var obj = document.getElementsByName("mychk");
+    var check_val = [];
+    for(k in obj){
+      if(obj[k].checked)
+        check_val.push(obj[k].value);
+    }
+    var check_vals = check_val.join(",");
+    var strArry = check_vals.split(',');
+
     var element = document.getElementById('bottom_start');
     if (element.src.match("ic_start_d")) {//取消下载
       element.src="../images/ic_pause_d.png";
 //      document.getElementById("bottom_start_span").style.color="#FFFFFF";
       $("#bottom_start_span").text("暂停");
+
+      //遍历暂停
+      for (var index in strArry) {
+        console.log("开始要暂停的的节目id=>",strArry[index]);
+        migu_app.SetConfig("download_pause",strArry[index])
+      }
+
     } else {//点击下载
       element.src="../images/ic_start_d.png";
 //      document.getElementById("bottom_start_span").style.color="#007AFF";
-      $("#bottom_start_span").text("开始");
-
-      var obj = document.getElementsByName("mychk");
-      var check_val = [];
-      for(k in obj){
-        if(obj[k].checked)
-          check_val.push(obj[k].value);
-      }
-      var check_vals = check_val.join(",");
-      console.log("chebox选择的节目进行开始下载->"+check_vals);
-      //TODO 根据上面的节目id进行开始下载
+       $("#bottom_start_span").text("开始");
+      //遍历 开始
+       for (var index in strArry) {
+         console.log("开始要下载的节目id=>",strArry[index]);
+         migu_app.SetConfig("download_start",strArry[index])
+       }
     }
   }
+  //底部删除
+  function bottom_delete(){
+    var check_list = ($("input[type='checkbox']:checked").length);
+    if (check_list<=0) {
+      alert("您还没有选择节目，请选择节目");
+      return false
+    }
+    var obj = document.getElementsByName("mychk");
+    var check_val = [];
+    for(k in obj){
+      if(obj[k].checked)
+        check_val.push(obj[k].value);
+    }
+    var check_vals = check_val.join(",");
+      qikoo.dialog.confirm('你确定要删除下载任务吗?\t删除将无法恢复。',function(){
+        //根据节目id 进行删除
+        //遍历调用删除
+        var strArry = check_vals.split(',');
+        for (var index in strArry){
+          //console.log("haha",strArry[index]);
+          migu_app.SetConfig("download_delete",strArry[index]);
+        }
+    },function(){
+    });
 
+  }
 </script>
   <script>
     function chk(){
@@ -473,10 +509,7 @@
       alert("需要调用播放器进行播放");
       //TODO 调用本地播放器进行播放
     }
-    //底部删除
-    function bottom_delete(){
 
-    }
 </script>
 <script>
   $(function(){
@@ -492,8 +525,6 @@
       $(".start-stop-div").css('display','none');
 
       $('#my_second_box').html(html);
-
-
 
     }else{
       var content_width="";
