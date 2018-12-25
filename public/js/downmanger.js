@@ -33,7 +33,6 @@ var TabBlock = {
     if (!$tab.hasClass('is-active')) {
       $tab.siblings().removeClass('is-active');
       $tab.addClass('is-active');
-   
       TabBlock.showPane($tab.index(), $context);
     }
    },
@@ -42,6 +41,12 @@ var TabBlock = {
     var $panes = $context.find('.tabBlock-pane');
     $panes.slideUp(TabBlock.s.animLen);
     $($panes[i]).slideDown(TabBlock.s.animLen);
+    // i=1 表示是第二个tab（已下载），隐藏底部  "所有任务下载后自动关机"文字
+    if (i == 1) {
+      $(".auto-shutdown-div").css("display","none");
+    }else {
+      $(".auto-shutdown-div").css("display","block");
+    }
   }
 };
 

@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <META HTTP-EQUIV="Refresh" CONTENT="3">
+  <!--<META HTTP-EQUIV="Refresh" CONTENT="10">-->
   <title></title>
   <!--<link rel="stylesheet" href="../css/normalize.css">-->
   <link rel="stylesheet" href="../css/styles.css" media="screen" type="text/css" />
@@ -56,7 +56,8 @@
       top: -40px;
       right: -10px;
     }
-    #bottom_start_span,#bottom_start_delete{
+    #bottom_start_span,#bottom_start_delete,#bottom_start_pause{
+      color:#FFFFFF;
       font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
       font-size: 14px;
     }
@@ -167,78 +168,15 @@
       <ul id="list">
         <div style="overflow-y: auto;height: 250px;" class="test-1">
           <div id="mybox">
-            <!--<li >-->
-              <!--<div style="width: 600px;">-->
-                <!--<div style="float: left">-->
-                  <!--<input class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg">-->
-                <!--</div>-->
-                <!--<div style="float: left;width: 400px;">-->
-                  <!--<p style="display: inline-block;color: #CCCCCC">节目名称1</p>-->
-                  <!--<div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">-->
-                    <!--<img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;-->
-                    <!--<span class="pause_down_span" style="color: #CCCCCC">下载</span>-->
-                  <!--</div>-->
 
-                  <!--<div class="progress">-->
-                    <!--<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 10%;">-->
-                    <!--</div>-->
-                  <!--</div>-->
-
-                  <!--<div style="color:#CCCCCC;" class="mark">-->
-                    <!--<span  class="pause_span"></span>-->
-                    <!--<span class="file_size_before">1000M/</span>-->
-                    <!--<span class="file_size_after">5000M</span>-->
-                  <!--</div>-->
-                <!--</div>-->
-
-                <!--<div style="float: left;margin-top: 20px;margin-left: 8px;">-->
-                  <!--<span style="margin-top3:3px;color: #CCCCCC;">10%</span>-->
-                  <!--<img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</li>-->
-
-            <!--<li>-->
-              <!--<div>-->
-                <!--<div style="float: left">-->
-                  <!--<input class="mychk" name="mychk" type="checkbox" value="123456" onclick="checkboxOnclick(this)"/><img style="width: 50px;height: 50px;" src="../images/test.jpg">-->
-                <!--</div>-->
-                <!--<div style="float: left;width: 400px;">-->
-                  <!--<p style="display: inline-block;color: #CCCCCC">节目名称1</p>-->
-                  <!--<div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">-->
-                    <!--<img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;-->
-                    <!--<span class="pause_down_span" style="color: #CCCCCC">下载</span>-->
-                  <!--</div>-->
-
-                  <!--<div class="progress">-->
-                    <!--<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 10%;">-->
-                    <!--</div>-->
-                  <!--</div>-->
-
-                  <!--<div style="color:#CCCCCC;" class="mark">-->
-                    <!--<span class="pause_span"></span>-->
-                    <!--<span class="file_size_before">1000M/</span>-->
-                    <!--<span class="file_size_after">5000M</span>-->
-                  <!--</div>-->
-                </div>
-
-                <!--<div style="float: left;margin-top: 20px;margin-left: 8px;">-->
-                  <!--<span style="margin-top3:3px;color: #CCCCCC;">10%</span>-->
-                  <!--<img class="callConfirm" src="../images/ic_delete.png" style="width: 22px;height: 22px;"/>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</li>-->
-          <!--</div>-->
-          <!--<div id="box" style="height: 100px;overflow:auto;border: 1px solid #252525;" class="test-1">-->
-          <!--</div>-->
-
+          </div>
         </div>
         <!--filter:alpha(Opacity=80);-moz-opacity:0.6;opacity: 0.6;-->
         <div class="start-stop-div" style="background-color: #181818;">
           <div>
             <label style="color:red;"><input style="margin-left: 3px;margin-top:11px;" type="checkbox" id="all" onclick="chk()"></label>
             <img id="bottom_start" onclick="bottom_start()" src="../images/ic_start_d.png"><span id="bottom_start_span">开始</span>
-            <!--<img id="bottom_pause" onclick="bottom_pause()" src="../img/ic_pause_d.png"><span id="bottom_start_pause">暂停</span>-->
+            <img id="bottom_pause" onclick="bottom_pause()" src="../images/ic_pause_d.png"><span id="bottom_start_pause">暂停</span>
             <img id="bottom_delete" onclick="bottom_delete()" src="../images/ic_delete_d.png"/><span id="bottom_start_delete">删除</span>
           </div>
         </div>
@@ -258,8 +196,8 @@
                     <div style="height: 27px;">
                       <p class="content-name" style="display: inline-block;color: #CCCCCC">节目名称1</p>
                       <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
-                        <img class="single_pause_img" onclick="finishPlay(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;
-                        <span class="pause_down_span" style="color: #CCCCCC">播放</span>
+                        <img class="single_pause_imgs" onclick="finishPlay(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;
+                        <span class="pause_down_spans" style="color: #CCCCCC">播放</span>
                       </div>
                     </div>
                     <div style="float: bottom;color:#CCCCCC;"><p class="line-limit-length">节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述</p></div>
@@ -281,8 +219,8 @@
                     <div style="height: 27px;">
                       <p style="display: inline-block;color: #CCCCCC">节目名称1</p>
                       <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
-                        <img class="single_pause_img" onclick="finishPlay(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;
-                        <span class="pause_down_span" style="color: #CCCCCC">播放</span>
+                        <img class="single_pause_imgs" onclick="finishPlay(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;
+                        <span class="pause_down_spans" style="color: #CCCCCC">播放</span>
                       </div>
                     </div>
                     <div style="float: bottom;color:#CCCCCC;"><p class="line-limit-length">节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述节目描述</p></div>
@@ -295,7 +233,6 @@
               </div>
             </li>
           </div>
-
         </div>
       </ul>
     </div>
@@ -325,21 +262,25 @@
 
   //点击单个节目暂停(停止下载)
   function singlePause(that){
-    if($(that).attr('src').match("ic_l_download_d")){
-      $(that).attr('src','../images/ic_l_pause_d.png');
-//      $(that).parent('.div_parent').siblings('.mark').find('.texts').slideUp(0).siblings('.pause_span').slideDown(0);
+    if($(that).attr('src').match("ic_l_pause_d.png")){
+      $(that).attr('src','../images/ic_l_download_d.png');
       $(that).parent('.div_parent').siblings('.mark').find('.pause_span').text("暂停");
       $(that).parent('.div_parent').siblings('.mark').find('.file_size_before').hide();
       $(that).parent('.div_parent').siblings('.mark').find('.file_size_after').hide();
-      $(that).siblings('.pause_down_span').text("暂停")
+      $(that).siblings('.pause_down_span').text("下载")
+      console.log("===下载")
+      //暂停
+      //migu_app.SetConfig("download_pause",cid)
 
     } else {
-      $(that).attr('src','../images/ic_l_download_d.png');
-//      $(that).parent('.div_parent').siblings('.mark').find('.texts').slideDown(0).siblings('.pause_span').slideUp(0);
+      $(that).attr('src','../images/ic_l_pause_d.png');
       $(that).parent('.div_parent').siblings('.mark').find('.pause_span').text("");
       $(that).parent('.div_parent').siblings('.mark').find('.file_size_before').show();
       $(that).parent('.div_parent').siblings('.mark').find('.file_size_after').show();
-      $(that).siblings('.pause_down_span').text("下载")
+      $(that).siblings('.pause_down_span').text("暂停")
+      console.log("===暂停")
+      //开始下载
+      //migu_app.SetConfig("download_start",cid)
     }
   }
     //已下载节目列表中的删除按钮
@@ -361,7 +302,7 @@
 //    });
 
   //点击底部全选开始按钮(暂停按钮)
-  function bottom_start(){
+/*  function bottom_start(){
     //点击开始，校验checkbox是否为空
     var check_list = ($("input[type='checkbox']:checked").length);
     if (check_list<=0) {
@@ -386,7 +327,7 @@
       //遍历暂停
       for (var index in strArry) {
         console.log("开始要暂停的的节目id=>",strArry[index]);
-        migu_app.SetConfig("download_pause",strArry[index])
+       // migu_app.SetConfig("download_pause",strArry[index])
       }
 
     } else {//点击下载
@@ -396,11 +337,76 @@
       //遍历 开始
        for (var index in strArry) {
          console.log("开始要下载的节目id=>",strArry[index]);
-         migu_app.SetConfig("download_start",strArry[index])
+         //migu_app.SetConfig("download_start",strArry[index])
        }
     }
+  }*/
+
+  //下载中列表 界面 点击底部 开始按钮
+  function bottom_start(){
+    //点击开始，校验checkbox是否为空
+    var check_list = ($("input[type='checkbox']:checked").length);
+    if (check_list<=0) {
+      alert("您还没有选择节目，请选择节目");
+      return false
+    }
+    var obj = document.getElementsByName("mychk");
+    var check_val = [];
+    for(k in obj){
+      if(obj[k].checked)
+        check_val.push(obj[k].value);
+    }
+    var check_vals = check_val.join(",");
+    var strArry = check_vals.split(',');
+    for (var index in strArry) {
+      //底部 点击 暂停 同时需要修改列表中样式
+      // 点击暂停 显示下载图标  同时文件大小 隐藏 显示暂停文字
+      $(".single_pause_img").attr("src","../images/ic_l_pause_d.png");
+      $(".pause_down_span").text("暂停");
+
+      $('.pause_span').text("下载");
+      $('.file_size_before').show();
+      $('.file_size_after').show();
+
+      console.log("开始要下载的节目id=>",strArry[index]);
+      //migu_app.SetConfig("download_start",strArry[index])
+    }
   }
-  //底部删除
+
+  //下载中列表 界面  点击底部 暂停按钮
+  function bottom_pause(){
+  //点击开始，校验checkbox是否为空
+    var check_list = ($("input[type='checkbox']:checked").length);
+    if (check_list<=0) {
+      alert("您还没有选择节目，请选择节目");
+      return false
+    }
+    var obj = document.getElementsByName("mychk");
+    var check_val = [];
+    for(k in obj){
+      if(obj[k].checked)
+        check_val.push(obj[k].value);
+    }
+    var check_vals = check_val.join(",");
+    var strArry = check_vals.split(',');
+    for (var index in strArry) {
+      var defaultCid = $(".single_pause_img").attr("value");
+      if ( strArry[index] == defaultCid ){
+        //底部 点击 暂停 同时需要修改列表中样式
+        // 点击暂停 显示下载图标  同时文件大小 隐藏 显示暂停文字
+        $(this).attr("src","../images/ic_l_download_d.png");
+        $(".pause_down_span").text("下载");
+
+        $('.pause_span').text("暂停");
+        $('.file_size_before').hide();
+        $('.file_size_after').hide();
+      }
+      console.log("开始要暂停的的节目id=>",strArry[index]);
+      //migu_app.SetConfig("download_pause",strArry[index])
+    }
+  }
+
+  //下载中列表 界面  底部删除
   function bottom_delete(){
     var check_list = ($("input[type='checkbox']:checked").length);
     if (check_list<=0) {
@@ -419,8 +425,8 @@
         //遍历调用删除
         var strArry = check_vals.split(',');
         for (var index in strArry){
-          //console.log("haha",strArry[index]);
-          migu_app.SetConfig("download_delete",strArry[index]);
+          console.log("要删除的节目id=>",strArry[index]);
+          //migu_app.SetConfig("download_delete",strArry[index]);
         }
     },function(){
     });
@@ -555,8 +561,8 @@
                 '<div style="float: left;width: '+content_width+';">'+
                 '<p class="content-name" style="display: inline-block;color: #CCCCCC">'+downdata.newName+'</p>'+
                 '<div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">'+
-                '<img class="single_pause_img" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_download_d.png">&nbsp;&nbsp;'+
-                '<span class="pause_down_span" style="color: #CCCCCC">下载</span>'+
+                '<img class="single_pause_img" value="'+ downdata.cid +'" onclick="singlePause(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/ic_l_pause_d.png">&nbsp;&nbsp;'+
+                '<span class="pause_down_span" style="color: #CCCCCC">暂停</span>'+
                 '</div>'+
                 '<div class="progress">'+
                 '<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 20%;">'+
