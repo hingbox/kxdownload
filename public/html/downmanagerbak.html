@@ -195,7 +195,7 @@
                   <div style="float: left;width: 520px;height: 50px;">
                     <div style="height: 27px;">
                       <p class="content-name" style="display: inline-block;color: #CCCCCC">节目名称1</p>
-                      <div class="div_parent" style="display: inline-block;float: right;margin-right: 20px;">
+                      <div class="div_parents" style="display: inline-block;float: right;margin-right: 20px;">
                         <img class="single_pause_imgs" onclick="finishPlay(this)" style="width: 20px;height: 20px;vertical-align: center" src="../images/play.png">&nbsp;&nbsp;
                         <span class="pause_down_spans" style="color: #CCCCCC">播放</span>
                       </div>
@@ -342,7 +342,7 @@
     }
   }*/
 
-  //下载中列表 界面 点击底部 开始按钮
+  //下载中列表 界面 点击底部开始，列表中 图标变成暂停状态，同时文件大小隐藏，显示 暂停
   function bottom_start(){
     //点击开始，校验checkbox是否为空
     var check_list = ($("input[type='checkbox']:checked").length);
@@ -359,21 +359,22 @@
     var check_vals = check_val.join(",");
     var strArry = check_vals.split(',');
     for (var index in strArry) {
-      //底部 点击 暂停 同时需要修改列表中样式
-      // 点击暂停 显示下载图标  同时文件大小 隐藏 显示暂停文字
-      $(".single_pause_img").attr("src","../images/ic_l_pause_d.png");
-      $(".pause_down_span").text("暂停");
-
-      $('.pause_span').text("下载");
-      $('.file_size_before').show();
-      $('.file_size_after').show();
-
+      $(".single_pause_img").each(function(){
+        var defaultCid =$(this).attr("value")
+        if (strArry[index] == defaultCid) {
+          $(this).attr("src","../images/ic_l_pause_d.png")
+          $(this).siblings(".pause_down_span").text("暂停")
+          $(this).parent('.div_parent').siblings('.mark').find('.pause_span').text("");
+          $(this).parent('.div_parent').siblings('.mark').find('.file_size_before').show();
+          $(this).parent('.div_parent').siblings('.mark').find('.file_size_after').show();
+        }
+      });
       console.log("开始要下载的节目id=>",strArry[index]);
       //migu_app.SetConfig("download_start",strArry[index])
     }
   }
 
-  //下载中列表 界面  点击底部 暂停按钮
+  //下载中列表 界面 点击底部暂停，列表中 图标变成下载状态，同时文件显示大小，隐藏 暂停
   function bottom_pause(){
   //点击开始，校验checkbox是否为空
     var check_list = ($("input[type='checkbox']:checked").length);
@@ -390,17 +391,16 @@
     var check_vals = check_val.join(",");
     var strArry = check_vals.split(',');
     for (var index in strArry) {
-      var defaultCid = $(".single_pause_img").attr("value");
-      if ( strArry[index] == defaultCid ){
-        //底部 点击 暂停 同时需要修改列表中样式
-        // 点击暂停 显示下载图标  同时文件大小 隐藏 显示暂停文字
-        $(this).attr("src","../images/ic_l_download_d.png");
-        $(".pause_down_span").text("下载");
-
-        $('.pause_span').text("暂停");
-        $('.file_size_before').hide();
-        $('.file_size_after').hide();
-      }
+      $(".single_pause_img").each(function(){
+        var defaultCid =$(this).attr("value")
+        if (strArry[index] == defaultCid) {
+          $(this).attr("src","../images/ic_l_download_d.png")
+          $(this).siblings(".pause_down_span").text("下载")
+          $(this).parent('.div_parent').siblings('.mark').find('.pause_span').text("暂停");
+          $(this).parent('.div_parent').siblings('.mark').find('.file_size_before').hide();
+          $(this).parent('.div_parent').siblings('.mark').find('.file_size_after').hide();
+        }
+      });
       console.log("开始要暂停的的节目id=>",strArry[index]);
       //migu_app.SetConfig("download_pause",strArry[index])
     }
