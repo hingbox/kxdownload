@@ -1,0 +1,108 @@
+.tabBlock-pane li{
+    list-style-type: none;
+}
+  body{
+      color:#999999;
+      margin:0;
+      padding:0;
+      overflow:hidden;
+      background:#222222;
+      font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+      font-size:14px;
+  }
+a:hover,a:active{
+    color: red;
+}
+.tabBlock-content {
+    background-color: #333333;
+    border: 0px ;
+}
+.content-name{
+    font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+    font-size: 14px;
+}
+
+#bottom_start_span,#bottom_start_delete,#bottom_start_pause{
+    color:#FFFFFF;
+    font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+    font-size: 14px;
+}
+.pause_down_span,.auto-down-span{
+    font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+    font-size: 14px;
+}
+
+
+  .div-center{
+      float: left;
+  }
+
+
+  .test-1::-webkit-scrollbar {/*滚动条整体样式*/
+      width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
+      height: 1px;
+  }
+.test-1::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #4E4E4E;
+    /*background: #535353;*/
+}
+.test-1::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background: #000000;
+    /*background: #EDEDED;*/
+}
+
+.line-limit-length {
+    font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; //文本不换行，这样超出一行的部分被截取，显示...
+}
+.pause_span,.file_size_before,.file_size_after{
+    font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+    font-size: 14px;
+}
+#mybox,#my_second_box {
+    margin-top: 5px;
+}
+.auto-shutdown-div{
+    margin-left:10px;;
+}
+
+  progress
+  {
+      color:orange; /*兼容IE10的已完成进度背景*/
+      border:none;
+      background:#d7d7d7;/*这个属性也可当作Chrome的已完成进度背景，只不过被下面的::progress-bar覆盖了*/
+      border-radius:30px;
+  }
+progress::-webkit-progress-bar
+{
+    background:#D8D8D8;;
+    border-radius:30px;
+}
+progress::-webkit-progress-value{
+    background:#007AFF;
+    border-radius:30px;
+}
+progress::-moz-progress-bar
+{
+    background:orange;
+}
+
+#disappare{border:0px solid #ccc;border-radius: 5px;background: #3A3A3A;font-size: 20px;
+    width: 150px;height: 90px;position: fixed;top:50%;left: 50%;margin:-100px 0px 0 -80px;font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";}
+#disappare p{padding: 5px;font-size: 16px;font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";}
+
+  a:hover{
+      background:#3A3A3A;
+      display:block;
+  }
+a {
+    width:auto;
+    /*li元素的宽度，也就是相当于定义了一个宽度范围，当鼠标移动到上面的范围的时候就触发a:hover效果*/
+}

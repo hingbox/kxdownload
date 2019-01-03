@@ -1,0 +1,153 @@
+body{
+    color:#999999;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    background:#222222;
+    font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+    font-size:14px;
+}
+#main{
+    width: window.innerWidth;
+    height: 450px;
+    background-color: #333333;
+}
+#title{
+    color: white;
+    padding-left: 25px;
+    padding-top:10px;
+    height:40px;
+    font-size:18px;
+}
+#radio_div{
+    color:white;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+#cont_list{
+    color: white;
+    padding: 25px;
+}
+#route{
+    padding: 25px;
+    height:30px;
+}
+#button_part{
+    color:#FFFFFF;
+    text-align:center;
+    height:30px;
+    line-height:30px;
+}
+#cont_list{
+    background-color: #2D2D2D;
+    padding: 20px;
+}
+#cancel_btn{
+    border:none;
+    vertical-align:middle;
+    height: 30px;
+    width: 90px;
+    border-radius:4px;
+    font-size: 18px;
+    background-color: #4C4C4C;
+    color: #FFFFFF;
+}
+#download_btn{
+    vertical-align:middle;
+    height: 30px;
+    width: 90px;
+    border-radius:4px;
+    margin-right: 50px;
+    font-size:18px;
+    background-color: #4C4C4C;
+    color: #FFFFFF;
+    border:none
+}
+#select_nums{
+    display: inline-block;
+    height:5px;
+    line-height:5px;
+    float: right
+}
+.box input{
+    height:30px;
+    line-height:30px;
+    border:1px solid #999;
+    vertical-align:middle;
+}
+
+  .test-1::-webkit-scrollbar {/*滚动条整体样式*/
+      width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
+      height: 1px;
+  }
+.test-1::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #4E4E4E;
+    /*background: #535353;*/
+}
+.test-1::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background: #000000;
+    /*background: #EDEDED;*/
+}
+
+      /* 单选按钮的样式*/
+  .choose {
+      position: relative;
+  }
+
+.choose .radio {
+    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    color: #999999;
+    padding-left: 25px;
+    cursor: pointer;
+}
+
+.choose .radio input {
+    position: absolute;
+    left: -9999px;
+}
+
+.choose .radio i {
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    outline: 0;
+    border: 1px solid #e4e4e4;
+    background: #ffffff;
+    border-radius: 50%;
+    transition: border-color .3s;
+    -webkit-transition: border-color .3s;
+}
+
+.choose .radio input + i:after {
+    position: absolute;
+    content: '';
+    top: 3px;
+    left: 3px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: #007AFF;
+    opacity: 0;
+    transition: opacity .1s;
+    -webkit-transition: opacity .1s;
+}
+
+.choose .radio input:checked + i:after {
+    opacity: 1;
+}
+i{
+    margin-top: -5px;;
+}
+
+#disappare{border:0px solid #ccc;border-radius: 5px;background: #333333;font-size: 20px;
+    width: 150px;height: 90px;position: fixed;top:50%;left: 50%;margin:-100px 0px 0 -80px;font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";}
+#disappare p{padding: 5px;font-size: 16px;font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";}
