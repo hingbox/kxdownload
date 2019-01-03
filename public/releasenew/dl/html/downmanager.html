@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--<META HTTP-EQUIV="Refresh" CONTENT="5">-->
+  <title></title>
+  <link rel="stylesheet" href="../css/styles.css" media="screen" type="text/css" />
+  <link rel="stylesheet" href="../css/bootstrap.css" media="screen" type="text/css" />
+  <link rel="stylesheet" href="../css/downmanger.css" media="screen" type="text/css" />
+  <script src="../js/jquery.js"></script>
+  <script src="../js/jquery.cookie.js"></script>
+  <link href="../css/qikoo.css" rel="stylesheet" type="text/css"/>
+  <script src="../js/qikoo.js"></script>
+
+</head>
+<body >
+  <figure class="tabBlock" style="width: 650px;">
+  <ul class="tabBlock-tabs">
+    <li class="tabBlock-tab is-active">下载中(<span id="download_num">0</span>)</li>
+    <li class="tabBlock-tab">已下载(<span id="downloaded_num">0</span>)</li>
+  </ul>
+  <div class="tabBlock-content" style="width: auto;">
+    <div class="tabBlock-pane">
+      <ul id="list">
+        <div style="overflow-y: auto;height: 300px;" class="test-1">
+          <div id="mybox">
+          </div>
+        </div>
+        <!--filter:alpha(Opacity=80);-moz-opacity:0.6;opacity: 0.6;-->
+        <div class="start-stop-div" style="background-color: #181818;">
+          <div>
+            <label style="color:red;"><input style="margin-left: 3px;margin-top:11px;" type="checkbox" id="all" onclick="chk()"></label>
+            <img id="bottom_start" onclick="bottom_starts()" src="../images/ic_start_d.png"><span id="bottom_start_span">开始</span>
+            <img id="bottom_pause" onclick="bottom_pauses()" src="../images/ic_pause_d.png"><span id="bottom_start_pause">暂停</span>
+            <img id="bottom_delete" onclick="bottom_deletes()" src="../images/ic_delete_d.png"/><span id="bottom_start_delete">删除</span>
+          </div>
+        </div>
+      </ul>
+    </div>
+    <div class="tabBlock-pane">
+      <ul>
+        <div style="overflow-y: auto;height: 334px;" class="test-1">
+          <div id="my_second_box">
+          </div>
+
+        </div>
+      </ul>
+    </div>
+
+    <!-- 底部 所有任务下载关机按钮，文件存储按钮，设置按钮 start-->
+    <div style="width: auto;height: 50px;margin-top: 20px;">
+      <div class="auto-shutdown-div" style="float: left"><img id="image" onclick="changeImage()" src="../images/ic_sw_off.png"/><span class="auto-down-span" style="color: #999999;">所有任务下载后自动关机</span></div>
+      <div style="float: right"><img onclick="openDir()" src="../images/ic_store.png"/><img onclick="openSettings()" src="../images/ic_setting.png"/></div>
+    </div>
+    <!-- 底部 所有任务下载关机按钮，文件存储按钮，设置按钮 end-->
+  </div>
+
+    <!-- 非空提示 start -->
+    <div id="disappare" style="display:none;">
+      <div style="text-align: center;color: #999999">提示</div>
+      <p style="color: #999999;text-align: center;">请选择节目!</p>
+    </div>
+    <!-- 非空提示 end -->
+
+</figure>
+<script src="../js/downmanger.js"></script>
+</body>
+</html>

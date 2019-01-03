@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下载视频</title>
+    <link href="../css/download.css" rel="stylesheet" type="text/css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+</head>
+<!-- onload="showLoading()" -->
+<body onload="onload()">
+<div id="main">
+    <div id="title">新建下载任务
+    	  <div id="test" name="test">
+    	
+    		</div>
+    </div>
+    <hr/>
+    <!-- 码率部分 start-->
+    <div id="radio_div">
+        <div class="choose">
+            全部下载为：
+            <label class="radio"><input type="radio" name="rateType" onchange="getRate(this)" value="1" checked><i></i>标清</label>
+            <label class="radio"><input type="radio" name="rateType" onchange="getRate(this)" value="2"><i></i>高清</label>
+            <label class="radio"><input type="radio" name="rateType" onchange="getRate(this)" value="3"><i></i>720P</label>
+            <label class="radio"><input type="radio" name="rateType" onchange="getRate(this)" value="4"><i></i>1080P<img src="../images/mark_vip.png"/></label>
+        </div>
+    </div>
+    <!-- 码率部分 end-->
+
+    <!-- 节目列表部分 start-->
+    <div id="cont_list">
+        <div style="background: #2D2D2D">选择下载文件</div>
+        <div id="box" style="height: 150px;overflow:auto;border: 1px solid #252525;" class="test-1">
+        </div>
+        <div style="background:#181818;border-radius: 3px;margin-top: 1px;">
+            <p id="check_all" style="display: inline-block;height:5px;line-height:5px" onclick="allcheck()">全选</p>
+            <p id="check_reverse" style="display: inline-block;height:5px;line-height:5px" onclick="reversecheck()">反选</p>
+            <p id="select_nums"></p>
+        </div>
+    </div>
+    <!-- 节目列表部分 end-->
+
+    <div id="route">
+        <div style="display: inline-block" >
+            <div style="float: left;margin-top: 3px;">保存为：</div>
+            <div style="float: left" class="box">
+                <input style="width: 300px;background: #252525;border-width: 0;color:#ffffff;" type="text" name="path" id="path" value="D:\migu" disabled="disabled" >
+                <span style="margin-right: 5px;" id="pathsize" name="pathsize">100G</span>
+            </div>
+            <div style="float: left;margin-left: 10px;margin-top: 3px;"><span onclick="updateDownloadDir()" style="color: #007AFF;">更改下载目录</span></div>
+        </div>
+    </div>
+
+    <!-- 文件保存路径 end-->
+
+    <!-- 下载，取消按钮 部分 start-->
+    <div id="button_part">
+            <button id="download_btn" onclick="download()">下载</button>
+            <button id="cancel_btn" onclick="cancelBtn()">取消</button>
+    </div>
+  
+    <!-- 下载，取消按钮 部分 end-->
+
+    <!-- 非空提示 start -->
+    <div id="disappare" style="display:none;">
+        <div style="text-align: center;color: #999999">提示</div>
+        <p style="color: #999999;text-align: center;">请选择节目!</p>
+    </div>
+    <!-- 非空提示 end -->
+</div>
+<script src="../js/download.js"></script>
+</body>
+</html>
