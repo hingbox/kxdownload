@@ -20,6 +20,10 @@ a:hover,a:active{
 .content-name{
     font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
     font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 350px;
+    white-space: nowrap; //文本不换行，这样超出一行的部分被截取，显示...
 }
 
 #bottom_start_span,#bottom_start_delete,#bottom_start_pause{
