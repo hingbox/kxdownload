@@ -329,7 +329,7 @@ function showdownloading(data){
   g_downloadingdata = loadDatas;
   var html="";
   if (loadDatas.length <= 0 || loadDatas<=0) {
-    html = "<div style='text-align: center;;color: #666666'><p style='display: block;line-height: 240px'>点击右上角新建下载</p></div>";
+    html = "<div style='text-align: center;;color: #666666'><p style='display: block;line-height: 240px'>点击右上角下载视频</p></div>";
     $('#mybox').html(html);
     $(".auto-shutdown-div").css('display','none');
     $(".start-stop-div").css('display','none');
@@ -440,7 +440,7 @@ function showdownloaded(data){
   var loadedDatas = $.parseJSON(data);
   $("#downloaded_num").text(loadedDatas.length);
   if (loadedDatas.length <= 0) {
-    loadedHtml = "<div style='text-align: center;color: #666666'><p style='display: block;line-height: 240px'>点击右上角新建下载</p></div>";
+    loadedHtml = "<div style='text-align: center;color: #666666'><p style='display: block;line-height: 240px'>点击右上角下载视频</p></div>";
     $('#my_second_box').html(loadedHtml);
   }else {
     for(var i=0;i<loadedDatas.length;i++){
