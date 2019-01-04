@@ -16,7 +16,7 @@ var cid = getUrlPara("cid");//获取页面上传过来的节目id
 var gContentDataList=[];
 var forwardUrl = "http://47.104.220.221:8080/MiguApi";//TODO 线网需要修改为 此地址 http://pc.miguvideo.com/MiguApi
 // 获取用户选择的码率 start
-var uc = 54;
+var uc = 55;
 function getRate(that) {
     var rateTypeTemp = $(that).val();
     if (rateTypeTemp == 1) {
