@@ -19,7 +19,7 @@ a:hover,a:active{
 }
 .content-name{
     font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
-    font-size: 14px;
+    font-size: 13px;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 350px;

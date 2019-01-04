@@ -43,6 +43,7 @@ body{
     padding: 20px;
 }
 #cancel_btn{
+    font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
     border:none;
     vertical-align:middle;
     height: 30px;
@@ -53,6 +54,7 @@ body{
     color: #FFFFFF;
 }
 #download_btn{
+    font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
     vertical-align:middle;
     height: 30px;
     width: 90px;
