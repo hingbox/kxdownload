@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>意见反馈</title>
+    <link rel="stylesheet" href="../css/bootstrap.css" media="screen" type="text/css" />
+    <script src="../js/jquery.js"></script>
+</head>
+<style>
+    #divType,#selectType{
+        font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+        font-size: 14px;
+        color: #333333
+    }
+    #divTitle{
+        font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+        font-size: 18px;
+        text-align: center;
+        color: #333333
+    }
+    #btn_submt{
+        vertical-align:middle;
+        height: 30px;
+        width: 90px;
+        border-radius:4px;
+        margin-right: 50px;
+        font-size:18px;
+        background-color:#007AFF;
+        color: #FFFFFF;
+        border:none
+    }
+    #disappare{border:0px solid #ccc;border-radius: 5px;background: #333333;font-size: 20px;
+        width: 150px;height: 90px;position: fixed;top:50%;left: 50%;margin:-145px 0 0 -150px;font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";}
+    #disappare p{padding: 5px;font-size: 16px;font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";}
+
+</style>
+<body>
+<div style="padding: 20px;width: 620px;height: 440px;">
+    <div id="divTitle">意见反馈</div>
+    <div style="margin:30px 0">
+        <div id="divType">反馈类型<br/>
+            <select class="form-control" id="selectType">
+                <option value = "0">请选择</option>
+                <option value = "1">内容相关</option>
+                <option value = "2">功能异常</option>
+                <option value = "3">会员权益</option>
+                <option value = "4">活动相关</option>
+                <option value = "5">产品建议</option>
+                <option value = "6">其他</option>
+            </select>
+        </div>
+        <div style="margin:30px 0">手机号码<br/>
+            <input type="text" id="mobile" class="form-control" placeholder="手机号码">
+        </div>
+        <div style="margin:30px 0">请输入您的反馈内容<br/>
+            <textarea style="resize:none" id="contents" class="form-control" rows="3" placeholder="建议少于140个字"></textarea>
+        </div>
+    </div>
+    <div style="text-align:center;margin:30px 0;">
+        <button id="btn_submt">提交</button>
+    </div>
+
+    <!-- 非空提示 start -->
+    <div id="disappare" style="display:none;">
+        <div id="divTip" style="text-align: center;color: #999999">提示</div>
+        <p style="color: #999999;text-align: center;">请选择反馈类型!</p>
+    </div>
+    <!-- 非空提示 end -->
+</div>
+<script>
+    $("#btn_submt").click(function () {
+        var options = $('#selectType option:selected').val();//选中的值
+        if("0" == options){
+            $("#disappare").children("p").css("color","#999999");
+            $("#disappare").children("div").css("color","#999999");
+            $("#disappare").css("background","#333333");
+            $("#disappare").children("p").text("请选择反馈类型!")
+            $("#disappare").show().delay(1000).hide(300);
+            return false;
+        }
+        var contents = $("#contents").val();
+        if (isEmpty(contents)) {
+            $("#disappare").children("p").css("color","#999999");
+            $("#disappare").children("div").css("color","#999999");
+            $("#disappare").css("background","#333333");
+            $("#disappare").children("p").text("请输入反馈内容!")
+            $("#disappare").show().delay(1000).hide(300);
+            return false;
+        }
+
+        var mobile = $("#mobile").val()
+        feedBack()
+//        $.ajax({
+//            type: "get",
+//            //url:"http://47.104.220.221:8080/MiguApi/forwardapi/getDownUrl.ac?uc=92&cid=650832943&userId=901785618&userToken=E7DCCC527ABB7D5DB2FD&visitUrl=http://pc.miguvideo.com",
+//            url:forwardUrl+"/forwardapi/getDownUrl.ac?uc="+uc+"&cid="+cid+"&userId="+userId+"&userToken="+userToken+"&visitUrl="+visitUrl,
+//            contentType: "application/json;charset=utf-8",
+//            dataType:"jsonp",
+//            jsonp:"jsoncallback",
+//            jsonpCallback:"feedBack",
+//            success: function (data) {
+//            },error:function(error){
+//            }
+//        });
+    });
+
+    function feedBack(){
+        //提示成功
+        $("#disappare").children("p").css("color","#FFFFFF");
+        $("#disappare").children("div").css("color","#FFFFFF");
+        $("#disappare").css("background","#007AFF");
+        $("#disappare").children("p").text("反馈成功!");
+        $("#disappare").show().delay(1000).hide(300);
+    }
+
+    function isEmpty(obj){
+        if(typeof obj == "undefined" || obj == null || obj == ""){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
